@@ -26,8 +26,8 @@
             position: relative;
         }
 
-        /* Circuit board grid */
-        .circuit-grid {
+        /* Organic mycelium network */
+        .network {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,21 +35,43 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.3;
-            background-image: 
-                linear-gradient(rgba(0, 255, 100, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 100, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: circuitPulse 4s ease-in-out infinite;
+            opacity: 0.15;
         }
 
-        @keyframes circuitPulse {
-            0%, 100% { opacity: 0.2; filter: brightness(0.8); }
-            50% { opacity: 0.5; filter: brightness(1.2); }
+        .network-line {
+            position: absolute;
+            height: 1px;
+            animation: organicPulse 8s ease-in-out infinite;
         }
 
-        /* Glitchy circuit traces */
-        .circuit-traces {
+        .network-line.primary {
+            background: linear-gradient(90deg, transparent, rgba(139, 162, 95, 0.6), rgba(139, 162, 95, 0.3), transparent);
+            filter: blur(0.5px);
+        }
+
+        .network-line.secondary {
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 140, 0.4), rgba(212, 175, 140, 0.2), transparent);
+            filter: blur(1px);
+        }
+
+        .network-line.tertiary {
+            background: linear-gradient(90deg, transparent, rgba(108, 128, 71, 0.5), rgba(108, 128, 71, 0.1), transparent);
+            filter: blur(0.8px);
+        }
+
+        @keyframes organicPulse {
+            0%, 100% { 
+                opacity: 0.1; 
+                transform: scaleX(0.9);
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: scaleX(1.1);
+            }
+        }
+
+        /* Floating bio-luminescent spores */
+        .spores {
             position: fixed;
             top: 0;
             left: 0;
@@ -59,66 +81,48 @@
             z-index: 2;
         }
 
-        .circuit-trace {
+        .spore {
             position: absolute;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 255, 100, 0.8), 
-                rgba(0, 255, 100, 0.4), 
-                rgba(0, 255, 100, 0.8), 
-                transparent
-            );
-            height: 2px;
-            animation: glitchTrace 3s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
+            border-radius: 50%;
+            animation: gentleDrift 25s ease-in-out infinite;
         }
 
-        .circuit-trace.vertical {
-            width: 2px;
-            background: linear-gradient(0deg, 
-                transparent, 
-                rgba(0, 255, 100, 0.8), 
-                rgba(0, 255, 100, 0.4), 
-                rgba(0, 255, 100, 0.8), 
-                transparent
-            );
+        .spore.layer1 {
+            background: radial-gradient(circle, rgba(139, 162, 95, 0.4), rgba(139, 162, 95, 0.1));
+            box-shadow: 0 0 15px rgba(139, 162, 95, 0.2);
         }
 
-        @keyframes glitchTrace {
-            0% { 
+        .spore.layer2 {
+            background: radial-gradient(circle, rgba(212, 175, 140, 0.3), rgba(212, 175, 140, 0.05));
+            box-shadow: 0 0 10px rgba(212, 175, 140, 0.15);
+        }
+
+        .spore.layer3 {
+            background: radial-gradient(circle, rgba(108, 128, 71, 0.35), rgba(108, 128, 71, 0.08));
+            box-shadow: 0 0 12px rgba(108, 128, 71, 0.18);
+        }
+
+        @keyframes gentleDrift {
+            0%, 100% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8); 
                 opacity: 0; 
-                transform: scale(1);
-                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
             }
             10% { 
-                opacity: 1; 
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
+                opacity: 0.6; 
+                transform: translateY(90vh) translateX(10px) rotate(20deg) scale(1); 
             }
             50% { 
+                transform: translateY(50vh) translateX(-15px) rotate(180deg) scale(1.1); 
                 opacity: 0.8; 
-                transform: scale(0.9);
-                filter: drop-shadow(0 0 15px rgba(0, 255, 100, 1));
             }
-            60% { 
-                opacity: 0; 
-                transform: scale(1.2);
-                filter: drop-shadow(0 0 2px rgba(0, 255, 100, 0.3));
-            }
-            65% { 
-                opacity: 1; 
-                transform: scale(0.8);
-                filter: drop-shadow(0 0 20px rgba(0, 255, 100, 1));
-            }
-            100% { 
-                opacity: 0; 
-                transform: scale(1);
-                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
+            90% { 
+                opacity: 0.4; 
+                transform: translateY(10vh) translateX(25px) rotate(340deg) scale(0.9); 
             }
         }
 
-        /* Jungle vines overlay */
-        .jungle-vines {
+        /* Mystical energy orbs */
+        .orbs {
             position: fixed;
             top: 0;
             left: 0;
@@ -128,90 +132,35 @@
             z-index: 3;
         }
 
-        .vine {
+        .orb {
             position: absolute;
-            background: linear-gradient(45deg, 
-                transparent,
-                rgba(34, 60, 20, 0.8),
-                rgba(50, 80, 30, 0.6),
-                rgba(34, 60, 20, 0.8),
-                transparent
-            );
-            border-radius: 50px;
-            animation: vineGrow 8s ease-in-out infinite;
-            filter: drop-shadow(2px 2px 10px rgba(20, 40, 15, 0.8));
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(139, 162, 95, 0.3), rgba(139, 162, 95, 0.1), transparent);
+            animation: mysticalFloat 18s ease-in-out infinite;
+            filter: blur(1px);
         }
 
-        @keyframes vineGrow {
+        @keyframes mysticalFloat {
             0%, 100% { 
-                transform: scale(1) rotate(0deg); 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0.2; 
+            }
+            25% { 
+                transform: translateY(-30px) translateX(20px) scale(1.1); 
                 opacity: 0.4; 
             }
-            25% { 
-                transform: scale(1.1) rotate(2deg); 
-                opacity: 0.7; 
-            }
             50% { 
-                transform: scale(0.9) rotate(-1deg); 
-                opacity: 0.9; 
-            }
-            75% { 
-                transform: scale(1.05) rotate(1deg); 
+                transform: translateY(-60px) translateX(-15px) scale(0.9); 
                 opacity: 0.6; 
             }
-        }
-
-        /* Digital glitch nodes */
-        .glitch-nodes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        .glitch-node {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, rgba(0, 255, 100, 1), rgba(0, 255, 100, 0.3));
-            border-radius: 50%;
-            animation: nodeGlitch 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
-        }
-
-        @keyframes nodeGlitch {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 0.6;
-                filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
-            }
-            20% { 
-                transform: scale(1.5); 
-                opacity: 1;
-                filter: drop-shadow(0 0 20px rgba(0, 255, 100, 1));
-            }
-            25% { 
-                transform: scale(0.3); 
-                opacity: 0.2;
-                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.4));
-            }
-            30% { 
-                transform: scale(1.8); 
-                opacity: 1;
-                filter: drop-shadow(0 0 25px rgba(0, 255, 100, 1));
-            }
-            50% { 
-                transform: scale(1); 
-                opacity: 0.8;
-                filter: drop-shadow(0 0 15px rgba(0, 255, 100, 0.9));
+            75% { 
+                transform: translateY(-25px) translateX(35px) scale(1.15); 
+                opacity: 0.3; 
             }
         }
 
-        /* Bio-tech data streams */
-        .data-streams {
+        /* Subtle forest whispers */
+        .forest-whispers {
             position: fixed;
             top: 0;
             left: 0;
@@ -221,30 +170,27 @@
             z-index: 2;
         }
 
-        .data-stream {
+        .whisper {
             position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 10px;
-            color: rgba(0, 255, 100, 0.6);
-            white-space: nowrap;
-            animation: dataFlow 6s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.5));
+            background: linear-gradient(45deg, 
+                transparent,
+                rgba(34, 60, 20, 0.3),
+                rgba(50, 80, 30, 0.2),
+                transparent
+            );
+            border-radius: 50px;
+            animation: whisperFlow 15s ease-in-out infinite;
+            filter: blur(2px);
         }
 
-        @keyframes dataFlow {
-            0% { 
-                transform: translateX(-100px); 
-                opacity: 0; 
+        @keyframes whisperFlow {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg) translateX(0); 
+                opacity: 0.1; 
             }
-            10% { 
-                opacity: 1; 
-            }
-            90% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translateX(calc(100vw + 100px)); 
-                opacity: 0; 
+            50% { 
+                transform: scale(1.2) rotate(5deg) translateX(20px); 
+                opacity: 0.3; 
             }
         }
 
@@ -621,12 +567,9 @@
 </head>
 <body>
     <!-- Animated background elements -->
-    <div class="circuit-grid"></div>
-    <div class="circuit-traces" id="circuit-traces"></div>
-    <div class="data-streams" id="data-streams"></div>
-    <div class="glitch-nodes" id="glitch-nodes"></div>
-    <div class="jungle-vines" id="jungle-vines"></div>
     <div class="network" id="network"></div>
+    <div class="spores" id="spores"></div>
+    <div class="forest-whispers" id="forest-whispers"></div>
     <div class="orbs" id="orbs"></div>
 
     <div class="container">
@@ -720,111 +663,88 @@
     </div>
 
     <script>
-        // Create glitchy circuit traces
-        function createCircuitTrace() {
-            const trace = document.createElement('div');
-            trace.className = 'circuit-trace';
+        // Create floating bio-luminescent spores
+        function createSpore() {
+            const spore = document.createElement('div');
+            spore.className = 'spore';
             
-            const isVertical = Math.random() > 0.5;
-            if (isVertical) {
-                trace.classList.add('vertical');
-                trace.style.height = Math.random() * 300 + 100 + 'px';
-                trace.style.width = '2px';
-                trace.style.left = Math.random() * 100 + '%';
-                trace.style.top = Math.random() * 100 + '%';
-            } else {
-                trace.style.width = Math.random() * 400 + 150 + 'px';
-                trace.style.height = '2px';
-                trace.style.left = Math.random() * 100 + '%';
-                trace.style.top = Math.random() * 100 + '%';
+            // Random layer for depth
+            const layers = ['layer1', 'layer2', 'layer3'];
+            const layer = layers[Math.floor(Math.random() * layers.length)];
+            spore.classList.add(layer);
+            
+            // Vary size based on layer for depth
+            let size;
+            switch(layer) {
+                case 'layer1': size = Math.random() * 8 + 5; break; // Largest, closest
+                case 'layer2': size = Math.random() * 6 + 3; break; // Medium
+                case 'layer3': size = Math.random() * 4 + 2; break; // Smallest, furthest
             }
             
-            trace.style.animationDelay = Math.random() * 3 + 's';
-            trace.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            document.getElementById('circuit-traces').appendChild(trace);
+            spore.style.width = size + 'px';
+            spore.style.height = size + 'px';
+            spore.style.left = Math.random() * 100 + '%';
+            spore.style.animationDuration = (Math.random() * 10 + 25) + 's';
+            spore.style.animationDelay = Math.random() * 15 + 's';
+            document.getElementById('spores').appendChild(spore);
             
-            // Remove after animation
+            // Remove spore after animation
             setTimeout(() => {
-                if (trace.parentNode) {
-                    trace.parentNode.removeChild(trace);
+                if (spore.parentNode) {
+                    spore.parentNode.removeChild(spore);
                 }
-            }, 8000);
+            }, 45000);
         }
 
-        // Create jungle vines
-        function createVine() {
-            const vine = document.createElement('div');
-            vine.className = 'vine';
+        // Create organic network lines
+        function createNetworkLine() {
+            const line = document.createElement('div');
+            line.className = 'network-line';
             
-            const length = Math.random() * 200 + 100;
-            const thickness = Math.random() * 15 + 5;
-            const isVertical = Math.random() > 0.3;
+            // Random line type for variety
+            const types = ['primary', 'secondary', 'tertiary'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            line.classList.add(type);
             
-            if (isVertical) {
-                vine.style.height = length + 'px';
-                vine.style.width = thickness + 'px';
-                vine.style.left = Math.random() * 100 + '%';
-                vine.style.top = Math.random() * 80 + '%';
-            } else {
-                vine.style.width = length + 'px';
-                vine.style.height = thickness + 'px';
-                vine.style.left = Math.random() * 80 + '%';
-                vine.style.top = Math.random() * 100 + '%';
-            }
-            
-            vine.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
-            vine.style.animationDelay = Math.random() * 8 + 's';
-            vine.style.animationDuration = (Math.random() * 4 + 8) + 's';
-            document.getElementById('jungle-vines').appendChild(vine);
+            line.style.width = Math.random() * 300 + 100 + 'px';
+            line.style.left = Math.random() * 100 + '%';
+            line.style.top = Math.random() * 100 + '%';
+            line.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+            line.style.animationDelay = Math.random() * 8 + 's';
+            line.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            document.getElementById('network').appendChild(line);
         }
 
-        // Create glitch nodes
-        function createGlitchNode() {
-            const node = document.createElement('div');
-            node.className = 'glitch-node';
-            
-            node.style.left = Math.random() * 100 + '%';
-            node.style.top = Math.random() * 100 + '%';
-            node.style.animationDelay = Math.random() * 2 + 's';
-            node.style.animationDuration = (Math.random() * 1 + 2) + 's';
-            document.getElementById('glitch-nodes').appendChild(node);
-            
-            // Remove after some time
-            setTimeout(() => {
-                if (node.parentNode) {
-                    node.parentNode.removeChild(node);
-                }
-            }, 10000);
+        // Create mystical floating orbs
+        function createOrb() {
+            const orb = document.createElement('div');
+            orb.className = 'orb';
+            const size = Math.random() * 60 + 30;
+            orb.style.width = size + 'px';
+            orb.style.height = size + 'px';
+            orb.style.left = Math.random() * 100 + '%';
+            orb.style.top = Math.random() * 100 + '%';
+            orb.style.animationDelay = Math.random() * 18 + 's';
+            orb.style.animationDuration = (Math.random() * 6 + 18) + 's';
+            document.getElementById('orbs').appendChild(orb);
         }
 
-        // Create bio-tech data streams
-        function createDataStream() {
-            const stream = document.createElement('div');
-            stream.className = 'data-stream';
+        // Create forest whispers
+        function createWhisper() {
+            const whisper = document.createElement('div');
+            whisper.className = 'whisper';
             
-            const dataTexts = [
-                '01001101 01111001 01100011 01100101',
-                'SUBSTRATE_PROTOCOL_INIT',
-                '0xDEADBEEF_SPORE_NETWORK',
-                'SYMBIOSIS::ESTABLISHED',
-                '>>> GROWING_CONNECTIONS',
-                'BLOCKCHAIN_MYCELIUM_SYNC',
-                'DECOMPOSER_DAO_ONLINE',
-                'UNDERGROUND_NETWORK_ACTIVE'
-            ];
+            const length = Math.random() * 150 + 80;
+            const thickness = Math.random() * 8 + 3;
             
-            stream.textContent = dataTexts[Math.floor(Math.random() * dataTexts.length)];
-            stream.style.top = Math.random() * 100 + '%';
-            stream.style.animationDelay = Math.random() * 6 + 's';
-            stream.style.animationDuration = (Math.random() * 2 + 6) + 's';
-            document.getElementById('data-streams').appendChild(stream);
-            
-            // Remove after animation
-            setTimeout(() => {
-                if (stream.parentNode) {
-                    stream.parentNode.removeChild(stream);
-                }
-            }, 12000);
+            whisper.style.width = length + 'px';
+            whisper.style.height = thickness + 'px';
+            whisper.style.left = Math.random() * 100 + '%';
+            whisper.style.top = Math.random() * 100 + '%';
+            whisper.style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+            whisper.style.animationDelay = Math.random() * 15 + 's';
+            whisper.style.animationDuration = (Math.random() * 5 + 15) + 's';
+            document.getElementById('forest-whispers').appendChild(whisper);
         }
 
         // Create network lines with different types
@@ -862,41 +782,29 @@
 
         // Initialize background elements
         function initBackground() {
-            // Create initial circuit traces
-            for (let i = 0; i < 20; i++) {
-                setTimeout(createCircuitTrace, i * 400);
-            }
-            
-            // Create jungle vines
+            // Create gentle spore flow
             for (let i = 0; i < 15; i++) {
-                createVine();
+                setTimeout(createSpore, i * 2000);
             }
             
-            // Create glitch nodes
-            for (let i = 0; i < 25; i++) {
-                setTimeout(createGlitchNode, i * 300);
-            }
-            
-            // Create data streams
-            for (let i = 0; i < 8; i++) {
-                setTimeout(createDataStream, i * 1500);
-            }
-            
-            // Create network lines (bio-tech mycelium)
-            for (let i = 0; i < 25; i++) {
+            // Create organic network lines
+            for (let i = 0; i < 20; i++) {
                 createNetworkLine();
             }
             
-            // Create floating orbs (bio-luminescent nodes)
-            for (let i = 0; i < 6; i++) {
-                setTimeout(createOrb, i * 2500);
+            // Create mystical orbs
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createOrb, i * 4000);
             }
             
-            // Continuous generation
-            setInterval(createCircuitTrace, 2000);
-            setInterval(createGlitchNode, 3000);
-            setInterval(createDataStream, 4000);
-            setInterval(createOrb, 20000);
+            // Create forest whispers
+            for (let i = 0; i < 12; i++) {
+                createWhisper();
+            }
+            
+            // Gentle continuous generation
+            setInterval(createSpore, 4000);
+            setInterval(createOrb, 25000);
         }
 
         // Add hover effects to name cards
