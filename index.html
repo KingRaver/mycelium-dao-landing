@@ -15,7 +15,10 @@
         }
 
         body {
-            background: radial-gradient(ellipse at center, #0a0f0a 0%, #000 70%);
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 20, 0, 0.9) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(10, 25, 10, 0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at center, #0a0f0a 0%, #000 70%);
             color: #d4af8c;
             font-family: 'Crimson Text', serif;
             overflow-x: hidden;
@@ -23,8 +26,8 @@
             position: relative;
         }
 
-        /* Animated background particles */
-        .spores {
+        /* Circuit board grid */
+        .circuit-grid {
             position: fixed;
             top: 0;
             left: 0;
@@ -32,20 +35,217 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
+            opacity: 0.3;
+            background-image: 
+                linear-gradient(rgba(0, 255, 100, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 100, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: circuitPulse 4s ease-in-out infinite;
         }
 
-        .spore {
+        @keyframes circuitPulse {
+            0%, 100% { opacity: 0.2; filter: brightness(0.8); }
+            50% { opacity: 0.5; filter: brightness(1.2); }
+        }
+
+        /* Glitchy circuit traces */
+        .circuit-traces {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .circuit-trace {
             position: absolute;
-            background: rgba(139, 162, 95, 0.3);
-            border-radius: 50%;
-            animation: drift 15s infinite linear;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 100, 0.8), 
+                rgba(0, 255, 100, 0.4), 
+                rgba(0, 255, 100, 0.8), 
+                transparent
+            );
+            height: 2px;
+            animation: glitchTrace 3s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
         }
 
-        @keyframes drift {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) translateX(50px) rotate(360deg); opacity: 0; }
+        .circuit-trace.vertical {
+            width: 2px;
+            background: linear-gradient(0deg, 
+                transparent, 
+                rgba(0, 255, 100, 0.8), 
+                rgba(0, 255, 100, 0.4), 
+                rgba(0, 255, 100, 0.8), 
+                transparent
+            );
+        }
+
+        @keyframes glitchTrace {
+            0% { 
+                opacity: 0; 
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
+            }
+            10% { 
+                opacity: 1; 
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scale(0.9);
+                filter: drop-shadow(0 0 15px rgba(0, 255, 100, 1));
+            }
+            60% { 
+                opacity: 0; 
+                transform: scale(1.2);
+                filter: drop-shadow(0 0 2px rgba(0, 255, 100, 0.3));
+            }
+            65% { 
+                opacity: 1; 
+                transform: scale(0.8);
+                filter: drop-shadow(0 0 20px rgba(0, 255, 100, 1));
+            }
+            100% { 
+                opacity: 0; 
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.6));
+            }
+        }
+
+        /* Jungle vines overlay */
+        .jungle-vines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .vine {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                transparent,
+                rgba(34, 60, 20, 0.8),
+                rgba(50, 80, 30, 0.6),
+                rgba(34, 60, 20, 0.8),
+                transparent
+            );
+            border-radius: 50px;
+            animation: vineGrow 8s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 10px rgba(20, 40, 15, 0.8));
+        }
+
+        @keyframes vineGrow {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 0.4; 
+            }
+            25% { 
+                transform: scale(1.1) rotate(2deg); 
+                opacity: 0.7; 
+            }
+            50% { 
+                transform: scale(0.9) rotate(-1deg); 
+                opacity: 0.9; 
+            }
+            75% { 
+                transform: scale(1.05) rotate(1deg); 
+                opacity: 0.6; 
+            }
+        }
+
+        /* Digital glitch nodes */
+        .glitch-nodes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .glitch-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(0, 255, 100, 1), rgba(0, 255, 100, 0.3));
+            border-radius: 50%;
+            animation: nodeGlitch 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
+        }
+
+        @keyframes nodeGlitch {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 0.6;
+                filter: drop-shadow(0 0 10px rgba(0, 255, 100, 0.8));
+            }
+            20% { 
+                transform: scale(1.5); 
+                opacity: 1;
+                filter: drop-shadow(0 0 20px rgba(0, 255, 100, 1));
+            }
+            25% { 
+                transform: scale(0.3); 
+                opacity: 0.2;
+                filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.4));
+            }
+            30% { 
+                transform: scale(1.8); 
+                opacity: 1;
+                filter: drop-shadow(0 0 25px rgba(0, 255, 100, 1));
+            }
+            50% { 
+                transform: scale(1); 
+                opacity: 0.8;
+                filter: drop-shadow(0 0 15px rgba(0, 255, 100, 0.9));
+            }
+        }
+
+        /* Bio-tech data streams */
+        .data-streams {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .data-stream {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: rgba(0, 255, 100, 0.6);
+            white-space: nowrap;
+            animation: dataFlow 6s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 100, 0.5));
+        }
+
+        @keyframes dataFlow {
+            0% { 
+                transform: translateX(-100px); 
+                opacity: 0; 
+            }
+            10% { 
+                opacity: 1; 
+            }
+            90% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateX(calc(100vw + 100px)); 
+                opacity: 0; 
+            }
         }
 
         /* Mycelium network lines */
@@ -57,19 +257,85 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         .network-line {
             position: absolute;
-            background: linear-gradient(90deg, transparent, #8ba25f, transparent);
             height: 1px;
-            animation: pulse 4s ease-in-out infinite;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .network-line.primary {
+            background: linear-gradient(90deg, transparent, rgba(139, 162, 95, 0.8), rgba(139, 162, 95, 0.4), transparent);
+            filter: blur(0.5px);
+        }
+
+        .network-line.secondary {
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 140, 0.6), rgba(212, 175, 140, 0.3), transparent);
+            filter: blur(1px);
+        }
+
+        .network-line.tertiary {
+            background: linear-gradient(90deg, transparent, rgba(108, 128, 71, 0.7), rgba(108, 128, 71, 0.2), transparent);
+            filter: blur(0.8px);
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.6; }
+            0%, 100% { 
+                opacity: 0.1; 
+                transform: scaleX(0.8);
+            }
+            25% { 
+                opacity: 0.4; 
+                transform: scaleX(1.1);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scaleX(1.3);
+            }
+            75% { 
+                opacity: 0.6; 
+                transform: scaleX(1.0);
+            }
+        }
+
+        /* Floating orbs */
+        .orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(139, 162, 95, 0.4), rgba(139, 162, 95, 0.1), transparent);
+            animation: float 12s ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0.3; 
+            }
+            25% { 
+                transform: translateY(-20px) translateX(15px) scale(1.1); 
+                opacity: 0.6; 
+            }
+            50% { 
+                transform: translateY(-40px) translateX(-10px) scale(0.9); 
+                opacity: 0.8; 
+            }
+            75% { 
+                transform: translateY(-15px) translateX(25px) scale(1.2); 
+                opacity: 0.4; 
+            }
         }
 
         /* Main container */
@@ -355,8 +621,13 @@
 </head>
 <body>
     <!-- Animated background elements -->
-    <div class="spores" id="spores"></div>
+    <div class="circuit-grid"></div>
+    <div class="circuit-traces" id="circuit-traces"></div>
+    <div class="data-streams" id="data-streams"></div>
+    <div class="glitch-nodes" id="glitch-nodes"></div>
+    <div class="jungle-vines" id="jungle-vines"></div>
     <div class="network" id="network"></div>
+    <div class="orbs" id="orbs"></div>
 
     <div class="container">
         <header class="header">
@@ -449,52 +720,183 @@
     </div>
 
     <script>
-        // Create floating spores
-        function createSpore() {
-            const spore = document.createElement('div');
-            spore.className = 'spore';
-            const size = Math.random() * 4 + 2;
-            spore.style.width = size + 'px';
-            spore.style.height = size + 'px';
-            spore.style.left = Math.random() * 100 + '%';
-            spore.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            spore.style.animationDelay = Math.random() * 5 + 's';
-            document.getElementById('spores').appendChild(spore);
+        // Create glitchy circuit traces
+        function createCircuitTrace() {
+            const trace = document.createElement('div');
+            trace.className = 'circuit-trace';
             
-            // Remove spore after animation
+            const isVertical = Math.random() > 0.5;
+            if (isVertical) {
+                trace.classList.add('vertical');
+                trace.style.height = Math.random() * 300 + 100 + 'px';
+                trace.style.width = '2px';
+                trace.style.left = Math.random() * 100 + '%';
+                trace.style.top = Math.random() * 100 + '%';
+            } else {
+                trace.style.width = Math.random() * 400 + 150 + 'px';
+                trace.style.height = '2px';
+                trace.style.left = Math.random() * 100 + '%';
+                trace.style.top = Math.random() * 100 + '%';
+            }
+            
+            trace.style.animationDelay = Math.random() * 3 + 's';
+            trace.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.getElementById('circuit-traces').appendChild(trace);
+            
+            // Remove after animation
             setTimeout(() => {
-                if (spore.parentNode) {
-                    spore.parentNode.removeChild(spore);
+                if (trace.parentNode) {
+                    trace.parentNode.removeChild(trace);
                 }
-            }, 20000);
+            }, 8000);
         }
 
-        // Create network lines
+        // Create jungle vines
+        function createVine() {
+            const vine = document.createElement('div');
+            vine.className = 'vine';
+            
+            const length = Math.random() * 200 + 100;
+            const thickness = Math.random() * 15 + 5;
+            const isVertical = Math.random() > 0.3;
+            
+            if (isVertical) {
+                vine.style.height = length + 'px';
+                vine.style.width = thickness + 'px';
+                vine.style.left = Math.random() * 100 + '%';
+                vine.style.top = Math.random() * 80 + '%';
+            } else {
+                vine.style.width = length + 'px';
+                vine.style.height = thickness + 'px';
+                vine.style.left = Math.random() * 80 + '%';
+                vine.style.top = Math.random() * 100 + '%';
+            }
+            
+            vine.style.transform = 'rotate(' + (Math.random() * 60 - 30) + 'deg)';
+            vine.style.animationDelay = Math.random() * 8 + 's';
+            vine.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            document.getElementById('jungle-vines').appendChild(vine);
+        }
+
+        // Create glitch nodes
+        function createGlitchNode() {
+            const node = document.createElement('div');
+            node.className = 'glitch-node';
+            
+            node.style.left = Math.random() * 100 + '%';
+            node.style.top = Math.random() * 100 + '%';
+            node.style.animationDelay = Math.random() * 2 + 's';
+            node.style.animationDuration = (Math.random() * 1 + 2) + 's';
+            document.getElementById('glitch-nodes').appendChild(node);
+            
+            // Remove after some time
+            setTimeout(() => {
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                }
+            }, 10000);
+        }
+
+        // Create bio-tech data streams
+        function createDataStream() {
+            const stream = document.createElement('div');
+            stream.className = 'data-stream';
+            
+            const dataTexts = [
+                '01001101 01111001 01100011 01100101',
+                'SUBSTRATE_PROTOCOL_INIT',
+                '0xDEADBEEF_SPORE_NETWORK',
+                'SYMBIOSIS::ESTABLISHED',
+                '>>> GROWING_CONNECTIONS',
+                'BLOCKCHAIN_MYCELIUM_SYNC',
+                'DECOMPOSER_DAO_ONLINE',
+                'UNDERGROUND_NETWORK_ACTIVE'
+            ];
+            
+            stream.textContent = dataTexts[Math.floor(Math.random() * dataTexts.length)];
+            stream.style.top = Math.random() * 100 + '%';
+            stream.style.animationDelay = Math.random() * 6 + 's';
+            stream.style.animationDuration = (Math.random() * 2 + 6) + 's';
+            document.getElementById('data-streams').appendChild(stream);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (stream.parentNode) {
+                    stream.parentNode.removeChild(stream);
+                }
+            }, 12000);
+        }
+
+        // Create network lines with different types
         function createNetworkLine() {
             const line = document.createElement('div');
             line.className = 'network-line';
-            line.style.width = Math.random() * 300 + 100 + 'px';
+            
+            // Random line type for variety
+            const types = ['primary', 'secondary', 'tertiary'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            line.classList.add(type);
+            
+            line.style.width = Math.random() * 400 + 150 + 'px';
             line.style.left = Math.random() * 100 + '%';
             line.style.top = Math.random() * 100 + '%';
             line.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
-            line.style.animationDelay = Math.random() * 4 + 's';
+            line.style.animationDelay = Math.random() * 6 + 's';
+            line.style.animationDuration = (Math.random() * 4 + 6) + 's';
             document.getElementById('network').appendChild(line);
+        }
+
+        // Create floating orbs
+        function createOrb() {
+            const orb = document.createElement('div');
+            orb.className = 'orb';
+            const size = Math.random() * 80 + 40;
+            orb.style.width = size + 'px';
+            orb.style.height = size + 'px';
+            orb.style.left = Math.random() * 100 + '%';
+            orb.style.top = Math.random() * 100 + '%';
+            orb.style.animationDelay = Math.random() * 12 + 's';
+            orb.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            document.getElementById('orbs').appendChild(orb);
         }
 
         // Initialize background elements
         function initBackground() {
-            // Create initial spores
-            for (let i = 0; i < 15; i++) {
-                setTimeout(createSpore, i * 1000);
+            // Create initial circuit traces
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createCircuitTrace, i * 400);
             }
             
-            // Create network lines
-            for (let i = 0; i < 20; i++) {
+            // Create jungle vines
+            for (let i = 0; i < 15; i++) {
+                createVine();
+            }
+            
+            // Create glitch nodes
+            for (let i = 0; i < 25; i++) {
+                setTimeout(createGlitchNode, i * 300);
+            }
+            
+            // Create data streams
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createDataStream, i * 1500);
+            }
+            
+            // Create network lines (bio-tech mycelium)
+            for (let i = 0; i < 25; i++) {
                 createNetworkLine();
             }
             
-            // Continue creating spores
-            setInterval(createSpore, 2000);
+            // Create floating orbs (bio-luminescent nodes)
+            for (let i = 0; i < 6; i++) {
+                setTimeout(createOrb, i * 2500);
+            }
+            
+            // Continuous generation
+            setInterval(createCircuitTrace, 2000);
+            setInterval(createGlitchNode, 3000);
+            setInterval(createDataStream, 4000);
+            setInterval(createOrb, 20000);
         }
 
         // Add hover effects to name cards
