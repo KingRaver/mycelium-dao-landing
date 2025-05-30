@@ -32,33 +32,50 @@
             50% { filter: brightness(1.05) contrast(1.02); }
         }
 
-        /* Debug - make spore prints more visible */
+        /* Fix spore print positioning - true background */
         .spore-layer {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 1;
-            border: 1px solid red; /* DEBUG - remove this later */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spore-layer.background {
+            z-index: -3;
+            opacity: 0.15;
+            transform: scale(1.5);
+        }
+
+        .spore-layer {
+            z-index: -2;
+        }
+
+        .spore-layer.foreground {
+            z-index: -1;
+            opacity: 0.25;
+            transform: scale(0.7);
         }
 
         .spore-print {
             position: relative;
-            width: 500px;
-            height: 500px;
-            border: 1px solid blue; /* DEBUG - remove this later */
+            width: 800px;
+            height: 800px;
         }
 
-        /* Make mandala rings much more visible */
+        /* Perfect mandala rings */
         .mandala-ring {
             position: absolute;
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            border: 2px solid rgba(184, 197, 166, 0.8); /* Much more visible */
+            border: 1px solid rgba(184, 197, 166, 0.6);
             transform: translate(-50%, -50%);
-            animation: mandalaGrow 10s ease-out forwards; /* Faster for testing */
+            animation: mandalaGrow 25s ease-out forwards;
             opacity: 0;
         }
 
@@ -69,30 +86,30 @@
                 opacity: 0;
                 border-color: rgba(184, 197, 166, 0);
             }
-            20% { 
-                opacity: 1; /* More visible */
-                border-color: rgba(184, 197, 166, 1);
+            15% { 
+                opacity: 0.8;
+                border-color: rgba(184, 197, 166, 0.8);
             }
             100% { 
-                opacity: 0.7; /* Keep more visible */
-                border-color: rgba(184, 197, 166, 0.7);
+                opacity: 0.4;
+                border-color: rgba(184, 197, 166, 0.4);
             }
         }
 
-        /* Make spiral arms much more visible */
+        /* Perfect spiral arms */
         .spiral-arm {
             position: absolute;
             top: 50%;
             left: 50%;
             background: linear-gradient(90deg, 
-                rgba(168, 184, 154, 1), /* Much more opaque */
-                rgba(212, 200, 224, 0.8), 
+                rgba(168, 184, 154, 0.7), 
+                rgba(212, 200, 224, 0.5), 
                 transparent
             );
-            height: 3px; /* Thicker lines */
+            height: 2px;
             border-radius: 2px;
             transform-origin: left center;
-            animation: spiralGrow 8s ease-out forwards; /* Faster for testing */
+            animation: spiralGrow 20s ease-out forwards;
             opacity: 0;
         }
 
@@ -101,11 +118,11 @@
                 width: 0; 
                 opacity: 0;
             }
-            30% { 
-                opacity: 1; /* More visible */
+            25% { 
+                opacity: 0.8;
             }
             100% { 
-                opacity: 0.8; /* Keep more visible */
+                opacity: 0.5;
             }
         }
 
@@ -191,7 +208,7 @@
             }
         }
 
-        /* Main container */
+        /* Main container - ensure it's above background */
         .container {
             position: relative;
             z-index: 10;
@@ -199,6 +216,11 @@
             margin: 0 auto;
             padding: 2rem;
             text-align: center;
+            background: rgba(248, 241, 232, 0.1);
+            backdrop-filter: blur(2px);
+            border-radius: 20px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         /* Header */
@@ -765,22 +787,11 @@
             console.log('Background initialization complete');
         }
 
-        // Add immediate visual test
+        // Clean version - remove debug elements
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, starting background...');
+            console.log('Initializing Mycelium DAO spore print...');
             
-            // Test if elements exist
-            const testLayers = ['spore-background', 'spore-main', 'spore-foreground'];
-            testLayers.forEach(id => {
-                const element = document.getElementById(id);
-                console.log(`Layer ${id}:`, element ? 'FOUND' : 'NOT FOUND');
-                if (element) {
-                    const sporePrint = element.querySelector('.spore-print');
-                    console.log(`Spore print in ${id}:`, sporePrint ? 'FOUND' : 'NOT FOUND');
-                }
-            });
-            
-            // Initialize background immediately
+            // Initialize background
             initBackground();
             
             // Add hover effects to name cards
@@ -794,23 +805,6 @@
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
-            
-            // Create a simple test element to verify JavaScript is working
-            const testDiv = document.createElement('div');
-            testDiv.style.position = 'fixed';
-            testDiv.style.top = '10px';
-            testDiv.style.left = '10px';
-            testDiv.style.background = 'red';
-            testDiv.style.color = 'white';
-            testDiv.style.padding = '5px';
-            testDiv.style.zIndex = '1000';
-            testDiv.textContent = 'JS WORKING';
-            document.body.appendChild(testDiv);
-            
-            // Remove test div after 3 seconds
-            setTimeout(() => {
-                document.body.removeChild(testDiv);
-            }, 3000);
         });
 
         // Add mouse proximity interactions
