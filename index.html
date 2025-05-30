@@ -32,7 +32,7 @@
             50% { filter: brightness(1.05) contrast(1.02); }
         }
 
-        /* Spore print geometric growth */
+        /* Debug - make spore prints more visible */
         .spore-layer {
             position: fixed;
             top: 50%;
@@ -40,35 +40,25 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 1;
-        }
-
-        .spore-layer.background {
-            z-index: 0;
-            opacity: 0.2;
-            transform: translate(-50%, -50%) scale(1.8);
-        }
-
-        .spore-layer.foreground {
-            z-index: 2;
-            opacity: 0.4;
-            transform: translate(-50%, -50%) scale(0.6);
+            border: 1px solid red; /* DEBUG - remove this later */
         }
 
         .spore-print {
             position: relative;
             width: 500px;
             height: 500px;
+            border: 1px solid blue; /* DEBUG - remove this later */
         }
 
-        /* Primary mandala pattern */
+        /* Make mandala rings much more visible */
         .mandala-ring {
             position: absolute;
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            border: 1px solid rgba(184, 197, 166, 0.4);
+            border: 2px solid rgba(184, 197, 166, 0.8); /* Much more visible */
             transform: translate(-50%, -50%);
-            animation: mandalaGrow 20s ease-out forwards;
+            animation: mandalaGrow 10s ease-out forwards; /* Faster for testing */
             opacity: 0;
         }
 
@@ -80,29 +70,29 @@
                 border-color: rgba(184, 197, 166, 0);
             }
             20% { 
-                opacity: 0.6;
-                border-color: rgba(184, 197, 166, 0.6);
+                opacity: 1; /* More visible */
+                border-color: rgba(184, 197, 166, 1);
             }
             100% { 
-                opacity: 0.3;
-                border-color: rgba(184, 197, 166, 0.3);
+                opacity: 0.7; /* Keep more visible */
+                border-color: rgba(184, 197, 166, 0.7);
             }
         }
 
-        /* Fibonacci spiral arms */
+        /* Make spiral arms much more visible */
         .spiral-arm {
             position: absolute;
             top: 50%;
             left: 50%;
             background: linear-gradient(90deg, 
-                rgba(168, 184, 154, 0.6), 
-                rgba(212, 200, 224, 0.4), 
+                rgba(168, 184, 154, 1), /* Much more opaque */
+                rgba(212, 200, 224, 0.8), 
                 transparent
             );
-            height: 2px;
+            height: 3px; /* Thicker lines */
             border-radius: 2px;
             transform-origin: left center;
-            animation: spiralGrow 15s ease-out forwards;
+            animation: spiralGrow 8s ease-out forwards; /* Faster for testing */
             opacity: 0;
         }
 
@@ -110,15 +100,12 @@
             0% { 
                 width: 0; 
                 opacity: 0;
-                filter: blur(2px);
             }
             30% { 
-                opacity: 0.8;
-                filter: blur(0px);
+                opacity: 1; /* More visible */
             }
             100% { 
-                opacity: 0.4;
-                filter: blur(1px);
+                opacity: 0.8; /* Keep more visible */
             }
         }
 
@@ -778,10 +765,25 @@
             console.log('Background initialization complete');
         }
 
-        // Add hover effects to name cards
+        // Add immediate visual test
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting background...');
+            
+            // Test if elements exist
+            const testLayers = ['spore-background', 'spore-main', 'spore-foreground'];
+            testLayers.forEach(id => {
+                const element = document.getElementById(id);
+                console.log(`Layer ${id}:`, element ? 'FOUND' : 'NOT FOUND');
+                if (element) {
+                    const sporePrint = element.querySelector('.spore-print');
+                    console.log(`Spore print in ${id}:`, sporePrint ? 'FOUND' : 'NOT FOUND');
+                }
+            });
+            
+            // Initialize background immediately
             initBackground();
             
+            // Add hover effects to name cards
             const nameCards = document.querySelectorAll('.name-card');
             nameCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
@@ -792,6 +794,23 @@
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
+            
+            // Create a simple test element to verify JavaScript is working
+            const testDiv = document.createElement('div');
+            testDiv.style.position = 'fixed';
+            testDiv.style.top = '10px';
+            testDiv.style.left = '10px';
+            testDiv.style.background = 'red';
+            testDiv.style.color = 'white';
+            testDiv.style.padding = '5px';
+            testDiv.style.zIndex = '1000';
+            testDiv.textContent = 'JS WORKING';
+            document.body.appendChild(testDiv);
+            
+            // Remove test div after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(testDiv);
+            }, 3000);
         });
 
         // Add mouse proximity interactions
