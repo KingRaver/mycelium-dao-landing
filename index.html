@@ -32,7 +32,7 @@
             50% { filter: brightness(1.05) contrast(1.02); }
         }
 
-        /* Fix spore print positioning - true background */
+        /* Waking Life inspired flowing organic background */
         .spore-layer {
             position: fixed;
             top: 0;
@@ -43,86 +43,179 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .spore-layer.background {
             z-index: -3;
-            opacity: 0.15;
-            transform: scale(1.5);
+            opacity: 0.08;
+            transform: scale(2);
         }
 
         .spore-layer {
             z-index: -2;
+            opacity: 0.12;
         }
 
         .spore-layer.foreground {
             z-index: -1;
-            opacity: 0.25;
-            transform: scale(0.7);
+            opacity: 0.15;
+            transform: scale(0.6);
         }
 
         .spore-print {
             position: relative;
-            width: 800px;
-            height: 800px;
+            width: 1000px;
+            height: 1000px;
         }
 
-        /* Perfect mandala rings */
-        .mandala-ring {
+        /* Flowing organic waves like lake ripples */
+        .organic-wave {
             position: absolute;
-            top: 50%;
-            left: 50%;
             border-radius: 50%;
-            border: 1px solid rgba(184, 197, 166, 0.6);
-            transform: translate(-50%, -50%);
-            animation: mandalaGrow 25s ease-out forwards;
+            border: 1px solid rgba(168, 184, 154, 0.3);
+            animation: lakeRipple 35s ease-in-out infinite;
             opacity: 0;
         }
 
-        @keyframes mandalaGrow {
+        @keyframes lakeRipple {
             0% { 
                 width: 0; 
                 height: 0; 
                 opacity: 0;
-                border-color: rgba(184, 197, 166, 0);
+                transform: translate(-50%, -50%) scale(1);
             }
-            15% { 
-                opacity: 0.8;
-                border-color: rgba(184, 197, 166, 0.8);
+            10% { 
+                opacity: 0.6;
+            }
+            50% { 
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(1.1);
             }
             100% { 
-                opacity: 0.4;
-                border-color: rgba(184, 197, 166, 0.4);
+                width: 800px;
+                height: 800px;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
             }
         }
 
-        /* Perfect spiral arms */
-        .spiral-arm {
+        /* Bamboo-inspired vertical growth lines */
+        .bamboo-growth {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            background: linear-gradient(90deg, 
-                rgba(168, 184, 154, 0.7), 
-                rgba(212, 200, 224, 0.5), 
+            background: linear-gradient(0deg, 
+                transparent,
+                rgba(168, 184, 154, 0.4), 
+                rgba(212, 200, 224, 0.3),
+                rgba(168, 184, 154, 0.4),
                 transparent
             );
-            height: 2px;
+            width: 2px;
             border-radius: 2px;
-            transform-origin: left center;
-            animation: spiralGrow 20s ease-out forwards;
+            animation: bambooGrow 28s ease-out forwards;
             opacity: 0;
         }
 
-        @keyframes spiralGrow {
+        @keyframes bambooGrow {
             0% { 
-                width: 0; 
+                height: 0; 
                 opacity: 0;
             }
-            25% { 
-                opacity: 0.8;
+            20% { 
+                opacity: 0.7;
             }
             100% { 
-                opacity: 0.5;
+                opacity: 0.3;
+            }
+        }
+
+        /* Desert sun rays */
+        .sun-ray {
+            position: absolute;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(230, 215, 184, 0.3), 
+                rgba(230, 215, 184, 0.1),
+                transparent
+            );
+            height: 1px;
+            transform-origin: left center;
+            animation: sunRayGlow 40s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes sunRayGlow {
+            0%, 100% { 
+                opacity: 0;
+                filter: blur(1px);
+            }
+            25% { 
+                opacity: 0.4;
+                filter: blur(0px);
+            }
+            75% { 
+                opacity: 0.6;
+                filter: blur(0.5px);
+            }
+        }
+
+        /* Floating particles like desert dust/spores */
+        .desert-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(219, 201, 163, 0.6), rgba(219, 201, 163, 0.1));
+            border-radius: 50%;
+            animation: desertDrift 45s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes desertDrift {
+            0% { 
+                opacity: 0;
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+            }
+            10% { 
+                opacity: 0.4;
+            }
+            90% { 
+                opacity: 0.3;
+            }
+            100% { 
+                opacity: 0;
+                transform: translateY(-100px) translateX(200px) rotate(360deg);
+            }
+        }
+
+        /* Eucalyptus leaf-like flowing shapes */
+        .eucalyptus-flow {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(168, 184, 154, 0.25),
+                rgba(184, 197, 166, 0.15),
+                transparent
+            );
+            border-radius: 50px;
+            animation: leafFlow 50s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes leafFlow {
+            0%, 100% { 
+                opacity: 0;
+                transform: rotate(0deg) scale(1);
+            }
+            25% { 
+                opacity: 0.3;
+                transform: rotate(5deg) scale(1.1);
+            }
+            50% { 
+                opacity: 0.4;
+                transform: rotate(-3deg) scale(0.9);
+            }
+            75% { 
+                opacity: 0.2;
+                transform: rotate(2deg) scale(1.05);
             }
         }
 
@@ -607,103 +700,103 @@
 
             <div style="margin-top: 4rem; text-align: center; font-style: italic; color: #A8B89A; opacity: 0.7;">
                 <p>Discovered at Waking Life • Summer Solstice • Crato, Portugal</p>
-                <p>Growing the underground network</p>
+                <p>growing the underground network</p>
             </div>
         </main>
     </div>
 
     <script>
-        // Create spore print geometry
-        function createSporePrint(container) {
-            console.log('Creating spore print for:', container.id);
-            const sporePrint = container.querySelector('.spore-print');
-            if (!sporePrint) {
-                console.error('No spore-print found in container');
-                return;
-            }
-            
-            // Create mandala rings - visible circles growing outward
-            for (let i = 1; i <= 12; i++) {
-                const ring = document.createElement('div');
-                ring.className = 'mandala-ring';
-                ring.style.width = (i * 40) + 'px';
-                ring.style.height = (i * 40) + 'px';
-                ring.style.animationDelay = (i * 1.5) + 's';
-                sporePrint.appendChild(ring);
-                console.log(`Created ring ${i} with size ${i * 40}px`);
-            }
-            
-            // Create fibonacci spiral arms - lines extending outward
-            for (let i = 0; i < 34; i++) { // More arms for fuller pattern
-                const arm = document.createElement('div');
-                arm.className = 'spiral-arm';
-                const angle = i * 17.508; // Golden angle in degrees
-                const length = Math.sqrt(i) * 25 + 20; // Length based on fibonacci
-                
-                arm.style.width = length + 'px';
-                arm.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-                arm.style.animationDelay = (i * 0.5) + 's';
-                sporePrint.appendChild(arm);
-            }
-            
-            // Create sacred geometry nodes at key intersections
-            const nodePositions = [
-                // Center point
-                {x: 250, y: 250},
-                // Inner cardinal points
-                {x: 250 + 60, y: 250}, {x: 250 - 60, y: 250}, 
-                {x: 250, y: 250 + 60}, {x: 250, y: 250 - 60},
-                // Inner diagonal points
-                {x: 250 + 42, y: 250 + 42}, {x: 250 - 42, y: 250 + 42},
-                {x: 250 + 42, y: 250 - 42}, {x: 250 - 42, y: 250 - 42},
-                // Outer cardinal points
-                {x: 250 + 120, y: 250}, {x: 250 - 120, y: 250},
-                {x: 250, y: 250 + 120}, {x: 250, y: 250 - 120},
-                // Random fibonacci positions
-                {x: 250 + 80, y: 250 + 30}, {x: 250 - 80, y: 250 - 30},
-                {x: 250 + 30, y: 250 + 80}, {x: 250 - 30, y: 250 - 80}
-            ];
-            
-            nodePositions.forEach((pos, i) => {
-                const node = document.createElement('div');
-                node.className = 'geo-node';
-                node.style.left = pos.x + 'px';
-                node.style.top = pos.y + 'px';
-                node.style.animationDelay = (i * 1) + 's';
-                sporePrint.appendChild(node);
-            });
-            
-            console.log(`Created ${nodePositions.length} nodes`);
-        }
-
-        // Create energy pulses that travel through the network
-        function createEnergyPulse(container) {
+        // Create Waking Life inspired organic background
+        function createWakingLifeBackground(container) {
+            console.log('Creating Waking Life inspired background for:', container.id);
             const sporePrint = container.querySelector('.spore-print');
             if (!sporePrint) return;
             
-            // Create 6 pulses at random positions along the spiral
-            for (let i = 0; i < 6; i++) {
-                const pulse = document.createElement('div');
-                pulse.className = 'energy-pulse';
+            // Create lake ripples - concentric circles like water
+            for (let i = 1; i <= 8; i++) {
+                const wave = document.createElement('div');
+                wave.className = 'organic-wave';
+                wave.style.top = '50%';
+                wave.style.left = '50%';
+                wave.style.animationDelay = (i * 4) + 's';
+                wave.style.animationDuration = (35 + Math.random() * 10) + 's';
+                sporePrint.appendChild(wave);
+            }
+            
+            // Create bamboo-like vertical growth lines
+            for (let i = 0; i < 20; i++) {
+                const bamboo = document.createElement('div');
+                bamboo.className = 'bamboo-growth';
+                const height = Math.random() * 400 + 200;
+                const x = Math.random() * 1000;
+                const y = Math.random() * 800 + 100;
                 
-                // Position along spiral path
-                const spiralIndex = Math.floor(Math.random() * 34);
-                const angle = spiralIndex * 17.508;
-                const radius = Math.sqrt(spiralIndex) * 25 + 50;
-                const x = 250 + Math.cos(angle * Math.PI / 180) * radius;
-                const y = 250 + Math.sin(angle * Math.PI / 180) * radius;
+                bamboo.style.height = height + 'px';
+                bamboo.style.left = x + 'px';
+                bamboo.style.top = y + 'px';
+                bamboo.style.animationDelay = (i * 1.4) + 's';
+                bamboo.style.animationDuration = (28 + Math.random() * 12) + 's';
+                sporePrint.appendChild(bamboo);
+            }
+            
+            // Create desert sun rays
+            for (let i = 0; i < 16; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'sun-ray';
+                const angle = (i * 22.5); // 360/16 = 22.5 degrees apart
+                const length = Math.random() * 300 + 200;
                 
-                pulse.style.left = x + 'px';
-                pulse.style.top = y + 'px';
-                pulse.style.animationDelay = (i * 0.7) + 's';
-                sporePrint.appendChild(pulse);
+                ray.style.width = length + 'px';
+                ray.style.left = '50%';
+                ray.style.top = '50%';
+                ray.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                ray.style.animationDelay = (i * 2.5) + 's';
+                ray.style.animationDuration = (40 + Math.random() * 20) + 's';
+                sporePrint.appendChild(ray);
+            }
+            
+            // Create eucalyptus leaf flows
+            for (let i = 0; i < 12; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'eucalyptus-flow';
+                const width = Math.random() * 80 + 40;
+                const height = Math.random() * 20 + 8;
+                const x = Math.random() * 800 + 100;
+                const y = Math.random() * 800 + 100;
                 
-                // Remove after animation cycle
+                leaf.style.width = width + 'px';
+                leaf.style.height = height + 'px';
+                leaf.style.left = x + 'px';
+                leaf.style.top = y + 'px';
+                leaf.style.animationDelay = (i * 4.2) + 's';
+                leaf.style.animationDuration = (50 + Math.random() * 15) + 's';
+                sporePrint.appendChild(leaf);
+            }
+        }
+
+        // Create floating desert particles
+        function createDesertParticles(container) {
+            const sporePrint = container.querySelector('.spore-print');
+            if (!sporePrint) return;
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'desert-particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 45 + 's';
+                particle.style.animationDuration = (45 + Math.random() * 15) + 's';
+                sporePrint.appendChild(particle);
+                
+                // Remove and recreate particles
                 setTimeout(() => {
-                    if (pulse.parentNode) {
-                        pulse.parentNode.removeChild(pulse);
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
                     }
-                }, 8000);
+                }, 60000);
             }
         }
 
@@ -738,11 +831,11 @@
             });
         }
 
-        // Initialize background elements
+        // Initialize Waking Life inspired background
         function initBackground() {
-            console.log('Initializing background...');
+            console.log('Initializing Waking Life inspired background...');
             
-            // Create spore prints for each layer with staggered timing
+            // Create organic background for each layer with staggered timing
             const layers = ['spore-background', 'spore-main', 'spore-foreground'];
             
             layers.forEach((layerId, index) => {
@@ -750,8 +843,8 @@
                 if (layer) {
                     console.log(`Found layer: ${layerId}`);
                     setTimeout(() => {
-                        createSporePrint(layer);
-                    }, index * 2000); // Stagger by 2 seconds
+                        createWakingLifeBackground(layer);
+                    }, index * 3000); // Stagger by 3 seconds
                 } else {
                     console.error(`Layer not found: ${layerId}`);
                 }
@@ -760,31 +853,30 @@
             // Create interactive glow zones
             setTimeout(() => {
                 createGlowZones();
-            }, 1000);
+            }, 2000);
             
-            // Start energy pulse cycles after spore prints are created
+            // Start desert particle cycles
             setTimeout(() => {
-                // Create initial energy pulses
                 layers.forEach(layerId => {
                     const layer = document.getElementById(layerId);
                     if (layer) {
-                        createEnergyPulse(layer);
+                        createDesertParticles(layer);
                     }
                 });
                 
-                // Set up continuous energy pulse generation
+                // Continuous particle generation
                 setInterval(() => {
                     layers.forEach(layerId => {
                         const layer = document.getElementById(layerId);
                         if (layer) {
-                            createEnergyPulse(layer);
+                            createDesertParticles(layer);
                         }
                     });
-                }, 8000); // New pulses every 8 seconds
+                }, 30000); // New particles every 30 seconds
                 
-            }, 12000); // Start pulses after spore prints have grown
+            }, 15000); // Start particles after background elements have grown
             
-            console.log('Background initialization complete');
+            console.log('Waking Life background initialization complete');
         }
 
         // Clean version - remove debug elements
