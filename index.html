@@ -1,4 +1,88 @@
-<!DOCTYPE html>
+// Enhanced interactive initialization
+        function initBackground() {
+            console.log('Initializing enhanced interactive background...');
+            
+            // Create engaging background for each layer
+            const layers = ['spore-background', 'spore-main', 'spore-foreground'];
+            
+            layers.forEach((layerId, index) => {
+                const layer = document.getElementById(layerId);
+                if (layer) {
+                    setTimeout(() => {
+                        createEngagingWakingLifeBackground(layer);
+                    }, index * 2000);
+                } else {
+                    console.error(`Layer not found: ${layerId}`);
+                }
+            });
+            
+            // Start curved particles
+            setTimeout(() => {
+                layers.forEach(layerId => {
+                    const layer = document.getElementById(layerId);
+                    if (layer) {
+                        createCurvedParticles(layer);
+                    }
+                });
+                
+                // Continuous curved particles
+                setInterval(() => {
+                    layers.forEach(layerId => {
+                        const layer = document.getElementById(layerId);
+                        if (layer) {
+                            createCurvedParticles(layer);
+                        }
+                    });
+                }, 20000);
+                
+            }, 8000);
+            
+            // Dramatic flash effects at random intervals
+            setInterval(() => {
+                if (Math.random() < 0.3) { // 30% chance every interval
+                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
+                    const layer = document.getElementById(randomLayer);
+                    if (layer) {
+                        createDramaticFlash(layer);
+                    }
+                }
+            }, 15000); // Check every 15 seconds
+            
+            // Interactive glow zones
+            setTimeout(() => {
+                createGlowZones();
+            }, 3000);
+            
+            console.log('Enhanced background initialization complete');
+        }
+
+        // Enhanced event listeners for full interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initializing enhanced interactive Mycelium DAO...');
+            
+            // Initialize background
+            initBackground();
+            
+            // Mouse movement creates ripples
+            let mouseRippleTimeout;
+            document.addEventListener('mousemove', function(e) {
+                clearTimeout(mouseRippleTimeout);
+                mouseRippleTimeout = setTimeout(() => {
+                    const layers = ['spore-main', 'spore-foreground'];
+                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
+                    const layer = document.getElementById(randomLayer);
+                    if (layer) {
+                        const rect = layer.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        createInteractiveRipple(x, y, layer);
+                    }
+                }, 150); // Throttle to avoid too many ripples
+            });
+            
+            // Click creates larger ripples
+            document.addEventListener('click', function(e) {
+                const layers = ['spore-background', 'spore-main', <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +116,7 @@
             50% { filter: brightness(1.05) contrast(1.02); }
         }
 
-        /* Waking Life inspired flowing organic background */
+        /* Enhanced Waking Life background with engaging animations */
         .spore-layer {
             position: fixed;
             top: 0;
@@ -44,178 +128,295 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            transition: filter 0.3s ease;
         }
 
         .spore-layer.background {
             z-index: -3;
-            opacity: 0.08;
+            opacity: 0.15;
             transform: scale(2);
         }
 
         .spore-layer {
             z-index: -2;
-            opacity: 0.12;
+            opacity: 0.25;
         }
 
         .spore-layer.foreground {
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.35;
             transform: scale(0.6);
         }
 
         .spore-print {
             position: relative;
-            width: 1000px;
-            height: 1000px;
+            width: 1200px;
+            height: 1200px;
         }
 
-        /* Flowing organic waves like lake ripples */
+        /* Interactive ripples from mouse/scroll */
+        .interactive-ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 165, 0, 0.6);
+            animation: interactiveRippleGrow 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes interactiveRippleGrow {
+            0% { 
+                width: 0; 
+                height: 0; 
+                opacity: 1;
+                border-color: rgba(255, 165, 0, 0.8);
+            }
+            100% { 
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+                border-color: rgba(255, 165, 0, 0);
+            }
+        }
+
+        /* Enhanced lake ripples with sunset colors */
         .organic-wave {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid rgba(168, 184, 154, 0.3);
-            animation: lakeRipple 35s ease-in-out infinite;
+            border: 1px solid rgba(255, 140, 0, 0.4);
+            animation: sunsetRipple 40s ease-in-out infinite;
             opacity: 0;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
         }
 
-        @keyframes lakeRipple {
+        @keyframes sunsetRipple {
             0% { 
                 width: 0; 
                 height: 0; 
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
+                border-color: rgba(255, 140, 0, 0);
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0);
             }
-            10% { 
-                opacity: 0.6;
+            15% { 
+                opacity: 0.8;
+                border-color: rgba(255, 140, 0, 0.6);
+                box-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
             }
             50% { 
-                opacity: 0.4;
-                transform: translate(-50%, -50%) scale(1.1);
+                border-color: rgba(138, 43, 226, 0.4);
+                box-shadow: 0 0 25px rgba(138, 43, 226, 0.3);
             }
             100% { 
-                width: 800px;
-                height: 800px;
+                width: 900px;
+                height: 900px;
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.9);
+                border-color: rgba(75, 0, 130, 0);
+                box-shadow: 0 0 5px rgba(75, 0, 130, 0);
             }
         }
 
-        /* Bamboo-inspired vertical growth lines */
+        /* Flowing curved particle paths */
+        .curved-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.8), rgba(64, 224, 208, 0.3));
+            border-radius: 50%;
+            animation: curvedFlow 25s ease-in-out infinite;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        @keyframes curvedFlow {
+            0% { 
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(0deg);
+            }
+            25% { 
+                opacity: 0.8;
+                transform: translateX(200px) translateY(-100px) rotate(90deg);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateX(150px) translateY(-300px) rotate(180deg);
+            }
+            75% { 
+                opacity: 0.6;
+                transform: translateX(-100px) translateY(-200px) rotate(270deg);
+            }
+            100% { 
+                opacity: 0;
+                transform: translateX(-200px) translateY(0) rotate(360deg);
+            }
+        }
+
+        /* Breathing/pulsing bamboo with bioluminescent effects */
         .bamboo-growth {
             position: absolute;
             background: linear-gradient(0deg, 
                 transparent,
-                rgba(168, 184, 154, 0.4), 
-                rgba(212, 200, 224, 0.3),
-                rgba(168, 184, 154, 0.4),
+                rgba(50, 205, 50, 0.6), 
+                rgba(144, 238, 144, 0.4),
+                rgba(50, 205, 50, 0.6),
                 transparent
             );
-            width: 2px;
-            border-radius: 2px;
-            animation: bambooGrow 28s ease-out forwards;
+            width: 3px;
+            border-radius: 3px;
+            animation: bambooBreath 35s ease-in-out infinite;
             opacity: 0;
+            box-shadow: 0 0 15px rgba(50, 205, 50, 0.3);
         }
 
-        @keyframes bambooGrow {
-            0% { 
-                height: 0; 
+        @keyframes bambooBreath {
+            0%, 100% { 
                 opacity: 0;
+                transform: scaleY(0) scaleX(1);
+                filter: blur(2px);
             }
-            20% { 
+            25% { 
                 opacity: 0.7;
+                transform: scaleY(1) scaleX(1.2);
+                filter: blur(0px);
             }
-            100% { 
-                opacity: 0.3;
+            50% { 
+                opacity: 0.9;
+                transform: scaleY(1.1) scaleX(0.8);
+                filter: blur(1px);
+            }
+            75% { 
+                opacity: 0.6;
+                transform: scaleY(0.9) scaleX(1.1);
+                filter: blur(0px);
             }
         }
 
-        /* Desert sun rays */
+        /* Dynamic rotating sun rays with festival lighting */
         .sun-ray {
             position: absolute;
             background: linear-gradient(90deg, 
                 transparent,
-                rgba(230, 215, 184, 0.3), 
-                rgba(230, 215, 184, 0.1),
+                rgba(255, 215, 0, 0.5), 
+                rgba(255, 165, 0, 0.3),
                 transparent
             );
-            height: 1px;
+            height: 2px;
             transform-origin: left center;
-            animation: sunRayGlow 40s ease-in-out infinite;
+            animation: festivalBeam 30s linear infinite;
             opacity: 0;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
 
-        @keyframes sunRayGlow {
-            0%, 100% { 
-                opacity: 0;
-                filter: blur(1px);
-            }
-            25% { 
-                opacity: 0.4;
-                filter: blur(0px);
-            }
-            75% { 
-                opacity: 0.6;
-                filter: blur(0.5px);
-            }
-        }
-
-        /* Floating particles like desert dust/spores */
-        .desert-particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: radial-gradient(circle, rgba(219, 201, 163, 0.6), rgba(219, 201, 163, 0.1));
-            border-radius: 50%;
-            animation: desertDrift 45s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes desertDrift {
+        @keyframes festivalBeam {
             0% { 
                 opacity: 0;
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+                transform: rotate(0deg);
+                filter: hue-rotate(0deg);
             }
-            10% { 
+            25% { 
+                opacity: 0.6;
+                transform: rotate(90deg);
+                filter: hue-rotate(60deg);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: rotate(180deg);
+                filter: hue-rotate(120deg);
+            }
+            75% { 
                 opacity: 0.4;
-            }
-            90% { 
-                opacity: 0.3;
+                transform: rotate(270deg);
+                filter: hue-rotate(180deg);
             }
             100% { 
                 opacity: 0;
-                transform: translateY(-100px) translateX(200px) rotate(360deg);
+                transform: rotate(360deg);
+                filter: hue-rotate(240deg);
             }
         }
 
-        /* Eucalyptus leaf-like flowing shapes */
-        .eucalyptus-flow {
+        /* Dramatic flash effects */
+        .lightning-flash {
             position: absolute;
-            background: linear-gradient(45deg, 
-                rgba(168, 184, 154, 0.25),
-                rgba(184, 197, 166, 0.15),
-                transparent
-            );
-            border-radius: 50px;
-            animation: leafFlow 50s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            animation: dramaticFlash 0.5s ease-out forwards;
             opacity: 0;
         }
 
-        @keyframes leafFlow {
+        @keyframes dramaticFlash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Color-shifting eucalyptus flows */
+        .eucalyptus-flow {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(50, 205, 50, 0.4),
+                rgba(0, 255, 255, 0.3),
+                rgba(138, 43, 226, 0.2),
+                transparent
+            );
+            border-radius: 50px;
+            animation: colorShiftFlow 45s ease-in-out infinite;
+            opacity: 0;
+            filter: blur(1px);
+        }
+
+        @keyframes colorShiftFlow {
             0%, 100% { 
                 opacity: 0;
                 transform: rotate(0deg) scale(1);
+                filter: blur(1px) hue-rotate(0deg);
             }
-            25% { 
+            20% { 
+                opacity: 0.4;
+                transform: rotate(15deg) scale(1.2);
+                filter: blur(0px) hue-rotate(60deg);
+            }
+            40% { 
+                opacity: 0.6;
+                transform: rotate(-10deg) scale(0.8);
+                filter: blur(2px) hue-rotate(120deg);
+            }
+            60% { 
+                opacity: 0.5;
+                transform: rotate(20deg) scale(1.1);
+                filter: blur(0px) hue-rotate(180deg);
+            }
+            80% { 
                 opacity: 0.3;
-                transform: rotate(5deg) scale(1.1);
+                transform: rotate(-5deg) scale(0.9);
+                filter: blur(1px) hue-rotate(240deg);
+            }
+        }
+
+        /* Campfire glow areas */
+        .campfire-glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, 
+                rgba(255, 69, 0, 0.3), 
+                rgba(255, 140, 0, 0.2), 
+                transparent
+            );
+            border-radius: 50%;
+            animation: campfirePulse 8s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes campfirePulse {
+            0%, 100% { 
+                opacity: 0.2;
+                transform: scale(1);
+                filter: blur(10px);
             }
             50% { 
-                opacity: 0.4;
-                transform: rotate(-3deg) scale(0.9);
-            }
-            75% { 
-                opacity: 0.2;
-                transform: rotate(2deg) scale(1.05);
+                opacity: 0.6;
+                transform: scale(1.3);
+                filter: blur(5px);
             }
         }
 
@@ -706,89 +907,104 @@
     </div>
 
     <script>
-        // Create Waking Life inspired organic background
-        function createWakingLifeBackground(container) {
-            console.log('Creating Waking Life inspired background for:', container.id);
+        // Enhanced Waking Life background with full engagement
+        function createEngagingWakingLifeBackground(container) {
+            console.log('Creating engaging Waking Life background for:', container.id);
             const sporePrint = container.querySelector('.spore-print');
             if (!sporePrint) return;
             
-            // Create lake ripples - concentric circles like water
-            for (let i = 1; i <= 8; i++) {
+            // Create sunset-colored lake ripples
+            for (let i = 1; i <= 12; i++) {
                 const wave = document.createElement('div');
                 wave.className = 'organic-wave';
                 wave.style.top = '50%';
                 wave.style.left = '50%';
-                wave.style.animationDelay = (i * 4) + 's';
-                wave.style.animationDuration = (35 + Math.random() * 10) + 's';
+                wave.style.transform = 'translate(-50%, -50%)';
+                wave.style.animationDelay = (i * 3) + 's';
+                wave.style.animationDuration = (40 + Math.random() * 15) + 's';
                 sporePrint.appendChild(wave);
             }
             
-            // Create bamboo-like vertical growth lines
-            for (let i = 0; i < 20; i++) {
+            // Create breathing bioluminescent bamboo
+            for (let i = 0; i < 25; i++) {
                 const bamboo = document.createElement('div');
                 bamboo.className = 'bamboo-growth';
-                const height = Math.random() * 400 + 200;
-                const x = Math.random() * 1000;
-                const y = Math.random() * 800 + 100;
+                const height = Math.random() * 500 + 250;
+                const x = Math.random() * 1200;
+                const y = Math.random() * 900 + 150;
                 
                 bamboo.style.height = height + 'px';
                 bamboo.style.left = x + 'px';
                 bamboo.style.top = y + 'px';
                 bamboo.style.animationDelay = (i * 1.4) + 's';
-                bamboo.style.animationDuration = (28 + Math.random() * 12) + 's';
+                bamboo.style.animationDuration = (35 + Math.random() * 15) + 's';
                 sporePrint.appendChild(bamboo);
             }
             
-            // Create desert sun rays
-            for (let i = 0; i < 16; i++) {
+            // Create rotating festival light beams
+            for (let i = 0; i < 20; i++) {
                 const ray = document.createElement('div');
                 ray.className = 'sun-ray';
-                const angle = (i * 22.5); // 360/16 = 22.5 degrees apart
-                const length = Math.random() * 300 + 200;
+                const angle = (i * 18); // 360/20 = 18 degrees apart
+                const length = Math.random() * 400 + 250;
                 
                 ray.style.width = length + 'px';
                 ray.style.left = '50%';
                 ray.style.top = '50%';
-                ray.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-                ray.style.animationDelay = (i * 2.5) + 's';
-                ray.style.animationDuration = (40 + Math.random() * 20) + 's';
+                ray.style.transform = `translate(0, -50%) rotate(${angle}deg)`;
+                ray.style.animationDelay = (i * 1.5) + 's';
+                ray.style.animationDuration = (30 + Math.random() * 20) + 's';
                 sporePrint.appendChild(ray);
             }
             
-            // Create eucalyptus leaf flows
-            for (let i = 0; i < 12; i++) {
+            // Create color-shifting eucalyptus flows
+            for (let i = 0; i < 15; i++) {
                 const leaf = document.createElement('div');
                 leaf.className = 'eucalyptus-flow';
-                const width = Math.random() * 80 + 40;
-                const height = Math.random() * 20 + 8;
-                const x = Math.random() * 800 + 100;
-                const y = Math.random() * 800 + 100;
+                const width = Math.random() * 120 + 60;
+                const height = Math.random() * 30 + 15;
+                const x = Math.random() * 1000 + 100;
+                const y = Math.random() * 1000 + 100;
                 
                 leaf.style.width = width + 'px';
                 leaf.style.height = height + 'px';
                 leaf.style.left = x + 'px';
                 leaf.style.top = y + 'px';
-                leaf.style.animationDelay = (i * 4.2) + 's';
-                leaf.style.animationDuration = (50 + Math.random() * 15) + 's';
+                leaf.style.animationDelay = (i * 3) + 's';
+                leaf.style.animationDuration = (45 + Math.random() * 20) + 's';
                 sporePrint.appendChild(leaf);
+            }
+            
+            // Create campfire glow areas
+            for (let i = 0; i < 8; i++) {
+                const glow = document.createElement('div');
+                glow.className = 'campfire-glow';
+                const x = Math.random() * 1000 + 100;
+                const y = Math.random() * 1000 + 100;
+                
+                glow.style.left = x + 'px';
+                glow.style.top = y + 'px';
+                glow.style.animationDelay = (i * 1) + 's';
+                glow.style.animationDuration = (8 + Math.random() * 4) + 's';
+                sporePrint.appendChild(glow);
             }
         }
 
-        // Create floating desert particles
-        function createDesertParticles(container) {
+        // Create flowing curved particles
+        function createCurvedParticles(container) {
             const sporePrint = container.querySelector('.spore-print');
             if (!sporePrint) return;
             
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'desert-particle';
+                particle.className = 'curved-particle';
                 
-                const size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 45 + 's';
-                particle.style.animationDuration = (45 + Math.random() * 15) + 's';
+                const startX = Math.random() * 1200;
+                const startY = Math.random() * 1200;
+                particle.style.left = startX + 'px';
+                particle.style.top = startY + 'px';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (25 + Math.random() * 15) + 's';
                 sporePrint.appendChild(particle);
                 
                 // Remove and recreate particles
@@ -796,8 +1012,54 @@
                     if (particle.parentNode) {
                         particle.parentNode.removeChild(particle);
                     }
-                }, 60000);
+                }, 40000);
             }
+        }
+
+        // Create dramatic flash effects
+        function createDramaticFlash(container) {
+            const sporePrint = container.querySelector('.spore-print');
+            if (!sporePrint) return;
+            
+            const flash = document.createElement('div');
+            flash.className = 'lightning-flash';
+            sporePrint.appendChild(flash);
+            
+            setTimeout(() => {
+                if (flash.parentNode) {
+                    flash.parentNode.removeChild(flash);
+                }
+            }, 500);
+        }
+
+        // Interactive mouse ripple effects
+        function createInteractiveRipple(x, y, container) {
+            const sporePrint = container.querySelector('.spore-print');
+            if (!sporePrint) return;
+            
+            const ripple = document.createElement('div');
+            ripple.className = 'interactive-ripple';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            sporePrint.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 2000);
+        }
+
+        // Scroll-based layer intensity changes
+        function updateLayerIntensity() {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const layers = document.querySelectorAll('.spore-layer');
+            
+            layers.forEach((layer, index) => {
+                const intensity = 1 + (scrollPercent * 0.5); // Increase intensity as you scroll
+                layer.style.filter = `brightness(${intensity}) contrast(${1 + scrollPercent * 0.3}) saturate(${1 + scrollPercent * 0.4})`;
+            });
         }
 
         // Create interactive glow zones
@@ -831,66 +1093,137 @@
             });
         }
 
-        // Initialize Waking Life inspired background
+        // Enhanced interactive initialization
         function initBackground() {
-            console.log('Initializing Waking Life inspired background...');
+            console.log('Initializing enhanced interactive background...');
             
-            // Create organic background for each layer with staggered timing
+            // Create engaging background for each layer
             const layers = ['spore-background', 'spore-main', 'spore-foreground'];
             
             layers.forEach((layerId, index) => {
                 const layer = document.getElementById(layerId);
                 if (layer) {
-                    console.log(`Found layer: ${layerId}`);
                     setTimeout(() => {
-                        createWakingLifeBackground(layer);
-                    }, index * 3000); // Stagger by 3 seconds
+                        createEngagingWakingLifeBackground(layer);
+                    }, index * 2000);
                 } else {
                     console.error(`Layer not found: ${layerId}`);
                 }
             });
             
-            // Create interactive glow zones
-            setTimeout(() => {
-                createGlowZones();
-            }, 2000);
-            
-            // Start desert particle cycles
+            // Start curved particles
             setTimeout(() => {
                 layers.forEach(layerId => {
                     const layer = document.getElementById(layerId);
                     if (layer) {
-                        createDesertParticles(layer);
+                        createCurvedParticles(layer);
                     }
                 });
                 
-                // Continuous particle generation
+                // Continuous curved particles
                 setInterval(() => {
                     layers.forEach(layerId => {
                         const layer = document.getElementById(layerId);
                         if (layer) {
-                            createDesertParticles(layer);
+                            createCurvedParticles(layer);
                         }
                     });
-                }, 30000); // New particles every 30 seconds
+                }, 20000);
                 
-            }, 15000); // Start particles after background elements have grown
+            }, 8000);
             
-            console.log('Waking Life background initialization complete');
+            // Dramatic flash effects at random intervals
+            setInterval(() => {
+                if (Math.random() < 0.3) { // 30% chance every interval
+                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
+                    const layer = document.getElementById(randomLayer);
+                    if (layer) {
+                        createDramaticFlash(layer);
+                    }
+                }
+            }, 15000); // Check every 15 seconds
+            
+            // Interactive glow zones
+            setTimeout(() => {
+                createGlowZones();
+            }, 3000);
+            
+            console.log('Enhanced background initialization complete');
         }
 
-        // Clean version - remove debug elements
+        // Enhanced event listeners for full interactivity
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Initializing Mycelium DAO spore print...');
+            console.log('Initializing enhanced interactive Mycelium DAO...');
             
             // Initialize background
             initBackground();
+            
+            // Mouse movement creates ripples
+            let mouseRippleTimeout;
+            document.addEventListener('mousemove', function(e) {
+                clearTimeout(mouseRippleTimeout);
+                mouseRippleTimeout = setTimeout(() => {
+                    const layers = ['spore-main', 'spore-foreground'];
+                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
+                    const layer = document.getElementById(randomLayer);
+                    if (layer) {
+                        const rect = layer.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        createInteractiveRipple(x, y, layer);
+                    }
+                }, 150); // Throttle to avoid too many ripples
+            });
+            
+            // Click creates larger ripples
+            document.addEventListener('click', function(e) {
+                const layers = ['spore-background', 'spore-main', 'spore-foreground'];
+                layers.forEach(layerId => {
+                    const layer = document.getElementById(layerId);
+                    if (layer) {
+                        const rect = layer.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        createInteractiveRipple(x, y, layer);
+                    }
+                });
+            });
+            
+            // Scroll-based intensity changes
+            window.addEventListener('scroll', function() {
+                updateLayerIntensity();
+            });
+            
+            // Touch support for mobile
+            document.addEventListener('touchstart', function(e) {
+                const touch = e.touches[0];
+                const layers = ['spore-main', 'spore-foreground'];
+                const randomLayer = layers[Math.floor(Math.random() * layers.length)];
+                const layer = document.getElementById(randomLayer);
+                if (layer) {
+                    const rect = layer.getBoundingClientRect();
+                    const x = touch.clientX - rect.left;
+                    const y = touch.clientY - rect.top;
+                    createInteractiveRipple(x, y, layer);
+                }
+            });
             
             // Add hover effects to name cards
             const nameCards = document.querySelectorAll('.name-card');
             nameCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-5px) scale(1.02)';
+                    // Create ripple effect on card hover
+                    const rect = this.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const layer = document.getElementById('spore-foreground');
+                    if (layer) {
+                        const layerRect = layer.getBoundingClientRect();
+                        const x = centerX - layerRect.left;
+                        const y = centerY - layerRect.top;
+                        createInteractiveRipple(x, y, layer);
+                    }
                 });
                 
                 card.addEventListener('mouseleave', function() {
