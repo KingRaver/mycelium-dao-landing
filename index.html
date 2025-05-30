@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From the Undergrowth | A Collective Emerges</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap');
         
@@ -16,271 +16,199 @@
 
         body {
             background: 
-                radial-gradient(ellipse at 20% 80%, rgba(0, 20, 0, 0.9) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(10, 25, 10, 0.8) 0%, transparent 50%),
-                radial-gradient(ellipse at center, #0a0f0a 0%, #000 70%);
-            color: #d4af8c;
+                radial-gradient(ellipse at 30% 70%, rgba(248, 241, 232, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(212, 200, 224, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #F4F1E8 0%, #E8E2D4 100%);
+            color: #6B7865;
             font-family: 'Crimson Text', serif;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
+            animation: breathingLight 12s ease-in-out infinite;
         }
 
-        /* Organic mycelium network */
-        .network {
+        @keyframes breathingLight {
+            0%, 100% { filter: brightness(1) contrast(1); }
+            50% { filter: brightness(1.05) contrast(1.02); }
+        }
+
+        /* Spore print geometric growth */
+        .spore-print {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 1;
-            opacity: 0.15;
         }
 
-        .network-line {
+        .spore-geometry {
             position: absolute;
-            height: 1px;
-            animation: organicPulse 8s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid transparent;
         }
 
-        .network-line.primary {
-            background: linear-gradient(90deg, transparent, rgba(139, 162, 95, 0.6), rgba(139, 162, 95, 0.3), transparent);
-            filter: blur(0.5px);
-        }
-
-        .network-line.secondary {
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 140, 0.4), rgba(212, 175, 140, 0.2), transparent);
-            filter: blur(1px);
-        }
-
-        .network-line.tertiary {
-            background: linear-gradient(90deg, transparent, rgba(108, 128, 71, 0.5), rgba(108, 128, 71, 0.1), transparent);
-            filter: blur(0.8px);
-        }
-
-        @keyframes organicPulse {
-            0%, 100% { 
-                opacity: 0.1; 
-                transform: scaleX(0.9);
-            }
-            50% { 
-                opacity: 0.6; 
-                transform: scaleX(1.1);
-            }
-        }
-
-        /* Floating bio-luminescent spores */
-        .spores {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .spore {
+        /* Primary mandala pattern */
+        .mandala-ring {
             position: absolute;
             border-radius: 50%;
-            animation: gentleDrift 25s ease-in-out infinite;
+            border: 1px solid rgba(184, 197, 166, 0.4);
+            animation: mandalaGrow 20s ease-out forwards;
+            opacity: 0;
         }
 
-        .spore.layer1 {
-            background: radial-gradient(circle, rgba(139, 162, 95, 0.4), rgba(139, 162, 95, 0.1));
-            box-shadow: 0 0 15px rgba(139, 162, 95, 0.2);
-        }
-
-        .spore.layer2 {
-            background: radial-gradient(circle, rgba(212, 175, 140, 0.3), rgba(212, 175, 140, 0.05));
-            box-shadow: 0 0 10px rgba(212, 175, 140, 0.15);
-        }
-
-        .spore.layer3 {
-            background: radial-gradient(circle, rgba(108, 128, 71, 0.35), rgba(108, 128, 71, 0.08));
-            box-shadow: 0 0 12px rgba(108, 128, 71, 0.18);
-        }
-
-        @keyframes gentleDrift {
-            0%, 100% { 
-                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.8); 
-                opacity: 0; 
+        @keyframes mandalaGrow {
+            0% { 
+                width: 0; 
+                height: 0; 
+                opacity: 0;
+                border-color: rgba(184, 197, 166, 0);
             }
-            10% { 
-                opacity: 0.6; 
-                transform: translateY(90vh) translateX(10px) rotate(20deg) scale(1); 
+            20% { 
+                opacity: 0.6;
+                border-color: rgba(184, 197, 166, 0.6);
             }
-            50% { 
-                transform: translateY(50vh) translateX(-15px) rotate(180deg) scale(1.1); 
-                opacity: 0.8; 
-            }
-            90% { 
-                opacity: 0.4; 
-                transform: translateY(10vh) translateX(25px) rotate(340deg) scale(0.9); 
+            100% { 
+                opacity: 0.3;
+                border-color: rgba(184, 197, 166, 0.3);
             }
         }
 
-        /* Mystical energy orbs */
-        .orbs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .orb {
+        /* Fibonacci spiral arms */
+        .spiral-arm {
             position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(139, 162, 95, 0.3), rgba(139, 162, 95, 0.1), transparent);
-            animation: mysticalFloat 18s ease-in-out infinite;
-            filter: blur(1px);
-        }
-
-        @keyframes mysticalFloat {
-            0%, 100% { 
-                transform: translateY(0) translateX(0) scale(1); 
-                opacity: 0.2; 
-            }
-            25% { 
-                transform: translateY(-30px) translateX(20px) scale(1.1); 
-                opacity: 0.4; 
-            }
-            50% { 
-                transform: translateY(-60px) translateX(-15px) scale(0.9); 
-                opacity: 0.6; 
-            }
-            75% { 
-                transform: translateY(-25px) translateX(35px) scale(1.15); 
-                opacity: 0.3; 
-            }
-        }
-
-        /* Subtle forest whispers */
-        .forest-whispers {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .whisper {
-            position: absolute;
-            background: linear-gradient(45deg, 
-                transparent,
-                rgba(34, 60, 20, 0.3),
-                rgba(50, 80, 30, 0.2),
+            background: linear-gradient(90deg, 
+                rgba(168, 184, 154, 0.6), 
+                rgba(212, 200, 224, 0.4), 
                 transparent
             );
-            border-radius: 50px;
-            animation: whisperFlow 15s ease-in-out infinite;
-            filter: blur(2px);
+            height: 2px;
+            border-radius: 2px;
+            transform-origin: left center;
+            animation: spiralGrow 15s ease-out forwards;
+            opacity: 0;
         }
 
-        @keyframes whisperFlow {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg) translateX(0); 
-                opacity: 0.1; 
+        @keyframes spiralGrow {
+            0% { 
+                width: 0; 
+                opacity: 0;
+                filter: blur(2px);
             }
-            50% { 
-                transform: scale(1.2) rotate(5deg) translateX(20px); 
-                opacity: 0.3; 
+            30% { 
+                opacity: 0.8;
+                filter: blur(0px);
+            }
+            100% { 
+                opacity: 0.4;
+                filter: blur(1px);
             }
         }
 
-        /* Mycelium network lines */
-        .network {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.15;
-        }
-
-        .network-line {
+        /* Sacred geometry nodes */
+        .geo-node {
             position: absolute;
-            height: 1px;
-            animation: pulse 6s ease-in-out infinite;
-        }
-
-        .network-line.primary {
-            background: linear-gradient(90deg, transparent, rgba(139, 162, 95, 0.8), rgba(139, 162, 95, 0.4), transparent);
-            filter: blur(0.5px);
-        }
-
-        .network-line.secondary {
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 140, 0.6), rgba(212, 175, 140, 0.3), transparent);
-            filter: blur(1px);
-        }
-
-        .network-line.tertiary {
-            background: linear-gradient(90deg, transparent, rgba(108, 128, 71, 0.7), rgba(108, 128, 71, 0.2), transparent);
-            filter: blur(0.8px);
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                opacity: 0.1; 
-                transform: scaleX(0.8);
-            }
-            25% { 
-                opacity: 0.4; 
-                transform: scaleX(1.1);
-            }
-            50% { 
-                opacity: 0.8; 
-                transform: scaleX(1.3);
-            }
-            75% { 
-                opacity: 0.6; 
-                transform: scaleX(1.0);
-            }
-        }
-
-        /* Floating orbs */
-        .orbs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .orb {
-            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(230, 215, 184, 0.8), rgba(219, 201, 163, 0.3));
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(139, 162, 95, 0.4), rgba(139, 162, 95, 0.1), transparent);
-            animation: float 12s ease-in-out infinite;
-            filter: blur(1px);
+            animation: nodeBloom 8s ease-out forwards;
+            opacity: 0;
         }
 
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) translateX(0) scale(1); 
-                opacity: 0.3; 
-            }
-            25% { 
-                transform: translateY(-20px) translateX(15px) scale(1.1); 
-                opacity: 0.6; 
+        @keyframes nodeBloom {
+            0% { 
+                transform: scale(0); 
+                opacity: 0;
             }
             50% { 
-                transform: translateY(-40px) translateX(-10px) scale(0.9); 
-                opacity: 0.8; 
+                transform: scale(1.5); 
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(230, 215, 184, 0.6);
             }
-            75% { 
-                transform: translateY(-15px) translateX(25px) scale(1.2); 
-                opacity: 0.4; 
+            100% { 
+                transform: scale(1); 
+                opacity: 0.6;
+                box-shadow: 0 0 5px rgba(230, 215, 184, 0.3);
+            }
+        }
+
+        /* Energy pulses through veins */
+        .energy-pulse {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(230, 215, 184, 1), rgba(230, 215, 184, 0.2));
+            border-radius: 50%;
+            opacity: 0;
+            animation: energyFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes energyFlow {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0.5);
+                box-shadow: 0 0 5px rgba(230, 215, 184, 0.3);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2);
+                box-shadow: 0 0 15px rgba(230, 215, 184, 0.8);
+            }
+        }
+
+        /* Layered spore prints at different scales */
+        .spore-layer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .spore-layer.background {
+            z-index: 0;
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(2);
+            animation-delay: 5s;
+        }
+
+        .spore-layer.foreground {
+            z-index: 2;
+            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(0.7);
+            animation-delay: 2s;
+        }
+
+        /* Interactive glow zones */
+        .glow-zone {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(212, 200, 224, 0.2), transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .glow-zone.active {
+            opacity: 1;
+            animation: gentleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleGlow {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 0.3; 
+            }
+            50% { 
+                transform: scale(1.1); 
+                opacity: 0.6; 
             }
         }
 
@@ -304,7 +232,7 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 2rem;
-            border: 2px solid #8ba25f;
+            border: 2px solid #A8B89A;
             border-radius: 50%;
             position: relative;
             animation: rotate 20s linear infinite;
@@ -317,7 +245,7 @@
             left: 50%;
             width: 80px;
             height: 80px;
-            background: radial-gradient(circle, #8ba25f20, transparent);
+            background: radial-gradient(circle, rgba(168, 184, 154, 0.2), transparent);
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
@@ -342,7 +270,7 @@
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #d4af8c, #8ba25f, #d4af8c);
+            background: linear-gradient(45deg, #6B7865, #A8B89A, #6B7865);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -357,7 +285,7 @@
         .subtitle {
             font-size: 1.2rem;
             font-style: italic;
-            color: #8ba25f;
+            color: #A8B89A;
             margin-bottom: 3rem;
         }
 
@@ -368,6 +296,7 @@
             line-height: 1.8;
             font-size: 1.1rem;
             text-align: left;
+            color: #5D6B58;
         }
 
         .mystical-text p {
@@ -392,8 +321,8 @@
         }
 
         .name-card {
-            background: rgba(139, 162, 95, 0.1);
-            border: 1px solid rgba(139, 162, 95, 0.3);
+            background: rgba(212, 200, 224, 0.15);
+            border: 1px solid rgba(184, 197, 166, 0.3);
             border-radius: 8px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -409,14 +338,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(139, 162, 95, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(230, 215, 184, 0.3), transparent);
             transition: left 0.5s ease;
         }
 
         .name-card:hover {
-            border-color: #8ba25f;
-            background: rgba(139, 162, 95, 0.2);
+            border-color: #A8B89A;
+            background: rgba(230, 215, 184, 0.2);
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(184, 197, 166, 0.2);
         }
 
         .name-card:hover::before {
@@ -427,48 +357,36 @@
             font-family: 'Cinzel', serif;
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #d4af8c;
+            color: #6B7865;
         }
 
         .name-card p {
             font-size: 0.9rem;
-            color: #8ba25f;
+            color: #A8B89A;
             font-style: italic;
         }
 
         /* Vote sections */
         .vote-section {
-            background: rgba(10, 15, 10, 0.8);
-            border: 1px solid rgba(139, 162, 95, 0.3);
+            background: rgba(248, 241, 232, 0.6);
+            border: 1px solid rgba(184, 197, 166, 0.3);
             border-radius: 12px;
             padding: 2rem;
             margin: 2rem 0;
             position: relative;
-        }
-
-        .vote-section::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(45deg, #8ba25f, transparent, #8ba25f);
-            border-radius: 12px;
-            z-index: -1;
-            opacity: 0.3;
+            backdrop-filter: blur(10px);
         }
 
         .vote-title {
             font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #d4af8c;
+            color: #6B7865;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #8ba25f, #6d8047);
+            background: linear-gradient(45deg, #A8B89A, #B8C5A6);
             color: #fff;
             padding: 1rem 2rem;
             border-radius: 8px;
@@ -480,6 +398,7 @@
             border: 1px solid transparent;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(168, 184, 154, 0.3);
         }
 
         .cta-button::before {
@@ -495,7 +414,8 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 162, 95, 0.4);
+            box-shadow: 0 6px 20px rgba(168, 184, 154, 0.4);
+            background: linear-gradient(45deg, #B8C5A6, #C9D6B8);
         }
 
         .cta-button:hover::before {
@@ -507,29 +427,46 @@
             margin-top: 3rem;
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .social-link {
-            color: #8ba25f;
-            font-size: 1.5rem;
+            color: #A8B89A;
+            font-size: 2.5rem;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .social-link:hover {
-            color: #d4af8c;
-            transform: scale(1.2);
+            color: #6B7865;
+            transform: scale(1.15);
+            text-shadow: 0 0 10px rgba(168, 184, 154, 0.5);
+        }
+
+        .social-label {
+            font-size: 0.9rem;
+            font-family: 'Cinzel', serif;
+            color: #A8B89A;
+        }
+
+        .social-link:hover .social-label {
+            color: #6B7865;
         }
 
         /* Disclaimer */
         .disclaimer {
-            background: rgba(139, 162, 95, 0.1);
-            border-left: 3px solid #8ba25f;
+            background: rgba(230, 215, 184, 0.2);
+            border-left: 3px solid #A8B89A;
             padding: 1rem;
             margin: 2rem 0;
             border-radius: 0 8px 8px 0;
             font-size: 0.9rem;
-            color: #b8a082;
+            color: #6B7865;
+            backdrop-filter: blur(5px);
         }
 
         /* Animations */
@@ -560,17 +497,26 @@
             }
             
             .social-links {
-                gap: 1rem;
+                gap: 2rem;
+            }
+
+            .social-link {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <!-- Animated background elements -->
-    <div class="network" id="network"></div>
-    <div class="spores" id="spores"></div>
-    <div class="forest-whispers" id="forest-whispers"></div>
-    <div class="orbs" id="orbs"></div>
+    <div class="spore-layer background" id="spore-background">
+        <div class="spore-print"></div>
+    </div>
+    <div class="spore-layer" id="spore-main">
+        <div class="spore-print"></div>
+    </div>
+    <div class="spore-layer foreground" id="spore-foreground">
+        <div class="spore-print"></div>
+    </div>
 
     <div class="container">
         <header class="header">
@@ -585,17 +531,12 @@
                 
                 <p>This is more than collective—it is symbiosis. More than funding—it is cultivation. We are the decomposers of old paradigms, the substrate for new growth, the invisible threads that bind community into living art.</p>
                 
-                <p>Eight names have emerged from the undergrowth. </p>
-                    
-                <p>Eight paths converge. </p>
-                
-                <p>The choice is ours to make, together.</p>
-            
+                <p>Eight names have emerged from the undergrowth. Eight paths converge. The choice is ours to make, together.</p>
             </div>
 
             <div class="vote-section">
                 <h2 class="vote-title">🌙 The First Convergence</h2>
-                <p>During the Waking Life Summer Solstice (June 18-23, 2025), we cast our first onchain vote through Snapshot. Open to all token holders—more details in Discord, you can help narrow eight possibilities to four.</p>
+                <p>During the Waking Life Summer Solstice (June 18-23, 2025), we cast our first onchain vote through Snapshot. Open to all crypto holders—if you've ever held tokens, you can help narrow eight possibilities to four.</p>
                 
                 <div class="names-grid">
                     <div class="name-card">
@@ -632,7 +573,7 @@
                     </div>
                 </div>
 
-                <a href="https://snapshot.org/#/theiadao.eth" class="cta-button">
+                <a href="https://snapshot.org/#/theiadao.eth" class="cta-button" target="_blank">
                     <i class="fas fa-vote-yea"></i> Cast Your Vote on Snapshot
                 </a>
             </div>
@@ -649,167 +590,167 @@
             </div>
 
             <div class="social-links">
-                <a href="https://t.me/TheiaMechanics" class="social-link" title="Telegram" target="_blank">
+                <a href="https://t.me/TheiaMechanics" class="social-link" target="_blank">
                     <i class="fab fa-telegram"></i>
+                    <span class="social-label">Telegram</span>
                 </a>
-                <a href="https://discord.com/channels/1302916254234968074/1376312602207977553/1376312667085602836" class="social-link" title="Discord" target="_blank">
+                <a href="https://discord.com/channels/1302916254234968074/1376312602207977553/1376312667085602836" class="social-link" target="_blank">
                     <i class="fab fa-discord"></i>
+                    <span class="social-label">Discord</span>
                 </a>
-                <a href="https://www.canopyculture.org" class="social-link" title="Canopy Culture" target="_blank">
+                <a href="https://www.canopyculture.org" class="social-link" target="_blank">
                     <i class="fas fa-globe"></i>
+                    <span class="social-label">Canopy Culture</span>
                 </a>
             </div>
 
-            <div style="margin-top: 4rem; text-align: center; font-style: italic; color: #8ba25f; opacity: 0.7;">
+            <div style="margin-top: 4rem; text-align: center; font-style: italic; color: #A8B89A; opacity: 0.7;">
                 <p>Discovered at Waking Life • Summer Solstice • Crato, Portugal</p>
-                <p>Powered by Canopy Culture • Growing the underground network</p>
+                <p>Building on THEIA DAO infrastructure • Growing the underground network</p>
             </div>
         </main>
     </div>
 
     <script>
-        // Create floating bio-luminescent spores
-        function createSpore() {
-            const spore = document.createElement('div');
-            spore.className = 'spore';
+        // Create spore print geometry
+        function createSporePrint(container) {
+            const sporePrint = container.querySelector('.spore-print');
             
-            // Random layer for depth
-            const layers = ['layer1', 'layer2', 'layer3'];
-            const layer = layers[Math.floor(Math.random() * layers.length)];
-            spore.classList.add(layer);
-            
-            // Vary size based on layer for depth
-            let size;
-            switch(layer) {
-                case 'layer1': size = Math.random() * 8 + 5; break; // Largest, closest
-                case 'layer2': size = Math.random() * 6 + 3; break; // Medium
-                case 'layer3': size = Math.random() * 4 + 2; break; // Smallest, furthest
+            // Create mandala rings
+            for (let i = 1; i <= 8; i++) {
+                const ring = document.createElement('div');
+                ring.className = 'mandala-ring';
+                ring.style.width = (i * 60) + 'px';
+                ring.style.height = (i * 60) + 'px';
+                ring.style.animationDelay = (i * 2) + 's';
+                ring.style.top = '50%';
+                ring.style.left = '50%';
+                ring.style.transform = 'translate(-50%, -50%)';
+                sporePrint.appendChild(ring);
             }
             
-            spore.style.width = size + 'px';
-            spore.style.height = size + 'px';
-            spore.style.left = Math.random() * 100 + '%';
-            spore.style.animationDuration = (Math.random() * 10 + 25) + 's';
-            spore.style.animationDelay = Math.random() * 15 + 's';
-            document.getElementById('spores').appendChild(spore);
+            // Create fibonacci spiral arms
+            for (let i = 0; i < 21; i++) {
+                const arm = document.createElement('div');
+                arm.className = 'spiral-arm';
+                const angle = i * 17.508; // Golden angle
+                const length = Math.sqrt(i) * 30;
+                arm.style.width = length + 'px';
+                arm.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                arm.style.top = '50%';
+                arm.style.left = '50%';
+                arm.style.animationDelay = (i * 0.7) + 's';
+                sporePrint.appendChild(arm);
+            }
             
-            // Remove spore after animation
-            setTimeout(() => {
-                if (spore.parentNode) {
-                    spore.parentNode.removeChild(spore);
-                }
-            }, 45000);
+            // Create sacred geometry nodes
+            const nodePositions = [
+                {x: 0, y: 0}, // Center
+                {x: 30, y: 0}, {x: -30, y: 0}, {x: 0, y: 30}, {x: 0, y: -30}, // Cardinal
+                {x: 21, y: 21}, {x: -21, y: 21}, {x: 21, y: -21}, {x: -21, y: -21}, // Diagonal
+                {x: 45, y: 0}, {x: -45, y: 0}, {x: 0, y: 45}, {x: 0, y: -45}, // Extended
+            ];
+            
+            nodePositions.forEach((pos, i) => {
+                const node = document.createElement('div');
+                node.className = 'geo-node';
+                node.style.left = `calc(50% + ${pos.x}px)`;
+                node.style.top = `calc(50% + ${pos.y}px)`;
+                node.style.transform = 'translate(-50%, -50%)';
+                node.style.animationDelay = (i * 1.2) + 's';
+                sporePrint.appendChild(node);
+            });
         }
 
-        // Create organic network lines
-        function createNetworkLine() {
-            const line = document.createElement('div');
-            line.className = 'network-line';
+        // Create energy pulses that travel through veins
+        function createEnergyPulse(container) {
+            const sporePrint = container.querySelector('.spore-print');
             
-            // Random line type for variety
-            const types = ['primary', 'secondary', 'tertiary'];
-            const type = types[Math.floor(Math.random() * types.length)];
-            line.classList.add(type);
-            
-            line.style.width = Math.random() * 300 + 100 + 'px';
-            line.style.left = Math.random() * 100 + '%';
-            line.style.top = Math.random() * 100 + '%';
-            line.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
-            line.style.animationDelay = Math.random() * 8 + 's';
-            line.style.animationDuration = (Math.random() * 4 + 8) + 's';
-            document.getElementById('network').appendChild(line);
+            for (let i = 0; i < 8; i++) {
+                const pulse = document.createElement('div');
+                pulse.className = 'energy-pulse';
+                
+                // Random position along a spiral path
+                const angle = Math.random() * 360;
+                const radius = Math.random() * 150 + 50;
+                const x = Math.cos(angle * Math.PI / 180) * radius;
+                const y = Math.sin(angle * Math.PI / 180) * radius;
+                
+                pulse.style.left = `calc(50% + ${x}px)`;
+                pulse.style.top = `calc(50% + ${y}px)`;
+                pulse.style.transform = 'translate(-50%, -50%)';
+                pulse.style.animationDelay = Math.random() * 4 + 's';
+                sporePrint.appendChild(pulse);
+                
+                // Remove and recreate pulses
+                setTimeout(() => {
+                    if (pulse.parentNode) {
+                        pulse.parentNode.removeChild(pulse);
+                    }
+                }, 8000);
+            }
         }
 
-        // Create mystical floating orbs
-        function createOrb() {
-            const orb = document.createElement('div');
-            orb.className = 'orb';
-            const size = Math.random() * 60 + 30;
-            orb.style.width = size + 'px';
-            orb.style.height = size + 'px';
-            orb.style.left = Math.random() * 100 + '%';
-            orb.style.top = Math.random() * 100 + '%';
-            orb.style.animationDelay = Math.random() * 18 + 's';
-            orb.style.animationDuration = (Math.random() * 6 + 18) + 's';
-            document.getElementById('orbs').appendChild(orb);
-        }
-
-        // Create forest whispers
-        function createWhisper() {
-            const whisper = document.createElement('div');
-            whisper.className = 'whisper';
+        // Create interactive glow zones
+        function createGlowZones() {
+            const zones = [
+                {x: 20, y: 30},
+                {x: 80, y: 25},
+                {x: 15, y: 70},
+                {x: 85, y: 75},
+                {x: 50, y: 15},
+                {x: 50, y: 85}
+            ];
             
-            const length = Math.random() * 150 + 80;
-            const thickness = Math.random() * 8 + 3;
-            
-            whisper.style.width = length + 'px';
-            whisper.style.height = thickness + 'px';
-            whisper.style.left = Math.random() * 100 + '%';
-            whisper.style.top = Math.random() * 100 + '%';
-            whisper.style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
-            whisper.style.animationDelay = Math.random() * 15 + 's';
-            whisper.style.animationDuration = (Math.random() * 5 + 15) + 's';
-            document.getElementById('forest-whispers').appendChild(whisper);
-        }
-
-        // Create network lines with different types
-        function createNetworkLine() {
-            const line = document.createElement('div');
-            line.className = 'network-line';
-            
-            // Random line type for variety
-            const types = ['primary', 'secondary', 'tertiary'];
-            const type = types[Math.floor(Math.random() * types.length)];
-            line.classList.add(type);
-            
-            line.style.width = Math.random() * 400 + 150 + 'px';
-            line.style.left = Math.random() * 100 + '%';
-            line.style.top = Math.random() * 100 + '%';
-            line.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
-            line.style.animationDelay = Math.random() * 6 + 's';
-            line.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            document.getElementById('network').appendChild(line);
-        }
-
-        // Create floating orbs
-        function createOrb() {
-            const orb = document.createElement('div');
-            orb.className = 'orb';
-            const size = Math.random() * 80 + 40;
-            orb.style.width = size + 'px';
-            orb.style.height = size + 'px';
-            orb.style.left = Math.random() * 100 + '%';
-            orb.style.top = Math.random() * 100 + '%';
-            orb.style.animationDelay = Math.random() * 12 + 's';
-            orb.style.animationDuration = (Math.random() * 8 + 12) + 's';
-            document.getElementById('orbs').appendChild(orb);
+            zones.forEach((zone, i) => {
+                const glowZone = document.createElement('div');
+                glowZone.className = 'glow-zone';
+                glowZone.style.left = zone.x + '%';
+                glowZone.style.top = zone.y + '%';
+                glowZone.style.transform = 'translate(-50%, -50%)';
+                document.body.appendChild(glowZone);
+                
+                // Random activation
+                setInterval(() => {
+                    if (Math.random() < 0.3) {
+                        glowZone.classList.add('active');
+                        setTimeout(() => {
+                            glowZone.classList.remove('active');
+                        }, 3000);
+                    }
+                }, 8000 + i * 2000);
+            });
         }
 
         // Initialize background elements
         function initBackground() {
-            // Create gentle spore flow
-            for (let i = 0; i < 15; i++) {
-                setTimeout(createSpore, i * 2000);
-            }
+            // Create spore prints for each layer
+            const layers = ['spore-background', 'spore-main', 'spore-foreground'];
+            layers.forEach((layerId, index) => {
+                const layer = document.getElementById(layerId);
+                setTimeout(() => {
+                    createSporePrint(layer);
+                }, index * 3000);
+            });
             
-            // Create organic network lines
-            for (let i = 0; i < 20; i++) {
-                createNetworkLine();
-            }
+            // Create interactive glow zones
+            createGlowZones();
             
-            // Create mystical orbs
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createOrb, i * 4000);
-            }
+            // Create continuous energy pulses
+            setInterval(() => {
+                layers.forEach(layerId => {
+                    const layer = document.getElementById(layerId);
+                    createEnergyPulse(layer);
+                });
+            }, 6000);
             
-            // Create forest whispers
-            for (let i = 0; i < 12; i++) {
-                createWhisper();
-            }
-            
-            // Gentle continuous generation
-            setInterval(createSpore, 4000);
-            setInterval(createOrb, 25000);
+            // Initial energy pulses
+            setTimeout(() => {
+                layers.forEach(layerId => {
+                    const layer = document.getElementById(layerId);
+                    createEnergyPulse(layer);
+                });
+            }, 10000);
         }
 
         // Add hover effects to name cards
@@ -828,36 +769,62 @@
             });
         });
 
-        // Add mystical cursor trail
+        // Add mouse proximity interactions
         document.addEventListener('mousemove', function(e) {
-            if (Math.random() < 0.1) {
+            const glowZones = document.querySelectorAll('.glow-zone');
+            glowZones.forEach(zone => {
+                const rect = zone.getBoundingClientRect();
+                const zoneCenterX = rect.left + rect.width / 2;
+                const zoneCenterY = rect.top + rect.height / 2;
+                const distance = Math.sqrt(
+                    Math.pow(e.clientX - zoneCenterX, 2) + 
+                    Math.pow(e.clientY - zoneCenterY, 2)
+                );
+                
+                if (distance < 100) {
+                    zone.classList.add('active');
+                } else {
+                    zone.classList.remove('active');
+                }
+            });
+            
+            // Subtle cursor trail with spore-like particles
+            if (Math.random() < 0.05) {
                 const trail = document.createElement('div');
                 trail.style.position = 'fixed';
                 trail.style.left = e.clientX + 'px';
                 trail.style.top = e.clientY + 'px';
-                trail.style.width = '3px';
-                trail.style.height = '3px';
-                trail.style.background = 'rgba(139, 162, 95, 0.5)';
+                trail.style.width = '4px';
+                trail.style.height = '4px';
+                trail.style.background = 'rgba(230, 215, 184, 0.6)';
                 trail.style.borderRadius = '50%';
                 trail.style.pointerEvents = 'none';
-                trail.style.zIndex = '5';
-                trail.style.animation = 'fadeOut 1s ease-out forwards';
+                trail.style.zIndex = '10';
+                trail.style.animation = 'sporalFadeOut 2s ease-out forwards';
                 document.body.appendChild(trail);
                 
                 setTimeout(() => {
                     if (trail.parentNode) {
                         trail.parentNode.removeChild(trail);
                     }
-                }, 1000);
+                }, 2000);
             }
         });
 
-        // Add fade out animation for cursor trail
+        // Add sporal fade out animation for cursor trail
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; transform: scale(1); }
-                to { opacity: 0; transform: scale(0); }
+            @keyframes sporalFadeOut {
+                from { 
+                    opacity: 1; 
+                    transform: scale(1); 
+                    box-shadow: 0 0 10px rgba(230, 215, 184, 0.4);
+                }
+                to { 
+                    opacity: 0; 
+                    transform: scale(0.3); 
+                    box-shadow: 0 0 20px rgba(230, 215, 184, 0.8);
+                }
             }
         `;
         document.head.appendChild(style);
