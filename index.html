@@ -18,20 +18,39 @@
         /* ===== BASE LAYOUT & THEME ===== */
         body {
             background: 
-                radial-gradient(ellipse at 30% 70%, rgba(248, 241, 232, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 30%, rgba(212, 200, 224, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, #F4F1E8 0%, #E8E2D4 100%);
+                radial-gradient(ellipse at 25% 75%, rgba(168, 184, 154, 0.12) 0%, rgba(230, 215, 184, 0.08) 30%, transparent 60%),
+                radial-gradient(ellipse at 75% 25%, rgba(212, 200, 224, 0.1) 0%, rgba(184, 197, 166, 0.06) 25%, transparent 55%),
+                radial-gradient(ellipse at 10% 40%, rgba(230, 215, 184, 0.08) 0%, rgba(212, 200, 224, 0.04) 35%, transparent 65%),
+                radial-gradient(ellipse at 90% 60%, rgba(184, 197, 166, 0.09) 0%, rgba(168, 184, 154, 0.05) 30%, transparent 60%),
+                radial-gradient(ellipse at 50% 10%, rgba(212, 200, 224, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 40% 90%, rgba(168, 184, 154, 0.07) 0%, transparent 45%),
+                linear-gradient(135deg, 
+                    #F4F1E8 0%, 
+                    #EDE6D8 15%, 
+                    #E8E2D4 30%, 
+                    #F0E9DB 45%, 
+                    #E6DFD1 60%, 
+                    #EBE4D6 75%, 
+                    #E8E2D4 100%
+                );
             color: #6B7865;
             font-family: 'Crimson Text', serif;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
-            animation: breathingLight 12s ease-in-out infinite;
+            animation: breathingLight 18s ease-in-out infinite;
         }
 
         @keyframes breathingLight {
-            0%, 100% { filter: brightness(1) contrast(1); }
-            50% { filter: brightness(1.05) contrast(1.02); }
+            0%, 100% { 
+                filter: brightness(1) contrast(1) saturate(1); 
+            }
+            33% { 
+                filter: brightness(1.02) contrast(1.01) saturate(1.05); 
+            }
+            66% { 
+                filter: brightness(1.04) contrast(1.02) saturate(0.98); 
+            }
         }
 
         .container {
@@ -48,337 +67,193 @@
             margin-bottom: 2rem;
         }
 
-        /* ===== WAKING LIFE ANIMATION LAYERS ===== */
+        /* ===== GROWING MYCELIUM NETWORK SYSTEM ===== */
         
-        /* Layer System - Multiple depth levels */
-        .spore-layer {
+        /* Main mycelium field */
+        .mycelium-field {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: filter 0.3s ease;
-        }
-
-        .spore-layer.background {
-            z-index: -3;
-            opacity: 0.15;
-            transform: scale(2);
-        }
-
-        .spore-layer {
-            z-index: -2;
-            opacity: 0.25;
-        }
-
-        .spore-layer.foreground {
             z-index: -1;
-            opacity: 0.35;
-            transform: scale(0.6);
+            overflow: hidden;
         }
 
-        .spore-print {
-            position: relative;
-            width: 1200px;
-            height: 1200px;
-        }
-
-        /* Interactive Ripples */
-        .interactive-ripple {
+        /* Growing mycelium threads - the main show */
+        .mycelium-thread {
             position: absolute;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 165, 0, 0.6);
-            animation: interactiveRippleGrow 2s ease-out forwards;
-            pointer-events: none;
-        }
-
-        @keyframes interactiveRippleGrow {
-            0% { 
-                width: 0; 
-                height: 0; 
-                opacity: 1;
-                border-color: rgba(255, 165, 0, 0.8);
-            }
-            100% { 
-                width: 300px;
-                height: 300px;
-                opacity: 0;
-                border-color: rgba(255, 165, 0, 0);
-            }
-        }
-
-        /* Lake Ripples with Sunset Colors */
-        .organic-wave {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 140, 0, 0.4);
-            animation: sunsetRipple 40s ease-in-out infinite;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(168, 184, 154, 0.6),
+                rgba(230, 215, 184, 0.4),
+                rgba(168, 184, 154, 0.6),
+                transparent
+            );
+            transform-origin: left center;
+            animation: threadGrowth 8s ease-out forwards;
             opacity: 0;
-            box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+            box-shadow: 0 0 8px rgba(168, 184, 154, 0.3);
         }
 
-        @keyframes sunsetRipple {
-            0% { 
-                width: 0; 
-                height: 0; 
+        @keyframes threadGrowth {
+            0% {
                 opacity: 0;
-                border-color: rgba(255, 140, 0, 0);
-                box-shadow: 0 0 10px rgba(255, 165, 0, 0);
+                transform: scaleX(0);
             }
-            15% { 
+            20% {
                 opacity: 0.8;
-                border-color: rgba(255, 140, 0, 0.6);
-                box-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+                transform: scaleX(0.3);
             }
-            50% { 
-                border-color: rgba(138, 43, 226, 0.4);
-                box-shadow: 0 0 25px rgba(138, 43, 226, 0.3);
+            60% {
+                opacity: 1;
+                transform: scaleX(1);
             }
-            100% { 
-                width: 900px;
-                height: 900px;
-                opacity: 0;
-                border-color: rgba(75, 0, 130, 0);
-                box-shadow: 0 0 5px rgba(75, 0, 130, 0);
+            100% {
+                opacity: 0.6;
+                transform: scaleX(1) scaleY(1.2);
             }
         }
 
-        /* Curved Particle Flows */
-        .curved-particle {
+        /* Mycelium nodes - connection points */
+        .mycelium-node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(230, 215, 184, 0.9), rgba(168, 184, 154, 0.4));
+            border-radius: 50%;
+            animation: nodeBloom 3s ease-out forwards;
+            opacity: 0;
+            box-shadow: 0 0 12px rgba(230, 215, 184, 0.5);
+        }
+
+        @keyframes nodeBloom {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Spore release from nodes */
+        .spore-release {
             position: absolute;
             width: 4px;
             height: 4px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.8), rgba(64, 224, 208, 0.3));
+            background: radial-gradient(circle, rgba(212, 200, 224, 0.8), rgba(168, 184, 154, 0.3));
             border-radius: 50%;
-            animation: curvedFlow 25s ease-in-out infinite;
+            animation: sporeFloat 12s ease-out forwards;
             opacity: 0;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
-        @keyframes curvedFlow {
-            0% { 
+        @keyframes sporeFloat {
+            0% {
                 opacity: 0;
-                transform: translateX(0) translateY(0) rotate(0deg);
+                transform: scale(0);
             }
-            25% { 
+            25% {
                 opacity: 0.8;
-                transform: translateX(200px) translateY(-100px) rotate(90deg);
+                transform: scale(1) translateY(0);
             }
-            50% { 
+            75% {
+                opacity: 0.6;
+                transform: scale(1.2) translateY(-100px) translateX(50px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-200px) translateX(100px);
+            }
+        }
+
+        /* Pulsing network energy */
+        .network-pulse {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(230, 215, 184, 1), rgba(230, 215, 184, 0.2));
+            border-radius: 50%;
+            animation: energyPulse 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes energyPulse {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+                box-shadow: 0 0 5px rgba(230, 215, 184, 0.3);
+            }
+            50% {
                 opacity: 1;
-                transform: translateX(150px) translateY(-300px) rotate(180deg);
-            }
-            75% { 
-                opacity: 0.6;
-                transform: translateX(-100px) translateY(-200px) rotate(270deg);
-            }
-            100% { 
-                opacity: 0;
-                transform: translateX(-200px) translateY(0) rotate(360deg);
+                transform: scale(1.5);
+                box-shadow: 0 0 20px rgba(230, 215, 184, 0.8);
             }
         }
 
-        /* Breathing Bioluminescent Bamboo */
-        .bamboo-growth {
+        /* Interactive mouse ripples */
+        .growth-ripple {
             position: absolute;
-            background: linear-gradient(0deg, 
-                transparent,
-                rgba(50, 205, 50, 0.6), 
-                rgba(144, 238, 144, 0.4),
-                rgba(50, 205, 50, 0.6),
-                transparent
-            );
-            width: 3px;
-            border-radius: 3px;
-            animation: bambooBreath 35s ease-in-out infinite;
-            opacity: 0;
-            box-shadow: 0 0 15px rgba(50, 205, 50, 0.3);
-        }
-
-        @keyframes bambooBreath {
-            0%, 100% { 
-                opacity: 0;
-                transform: scaleY(0) scaleX(1);
-                filter: blur(2px);
-            }
-            25% { 
-                opacity: 0.7;
-                transform: scaleY(1) scaleX(1.2);
-                filter: blur(0px);
-            }
-            50% { 
-                opacity: 0.9;
-                transform: scaleY(1.1) scaleX(0.8);
-                filter: blur(1px);
-            }
-            75% { 
-                opacity: 0.6;
-                transform: scaleY(0.9) scaleX(1.1);
-                filter: blur(0px);
-            }
-        }
-
-        /* Festival Light Beams */
-        .sun-ray {
-            position: absolute;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 215, 0, 0.5), 
-                rgba(255, 165, 0, 0.3),
-                transparent
-            );
-            height: 2px;
-            transform-origin: left center;
-            animation: festivalBeam 30s linear infinite;
-            opacity: 0;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-        }
-
-        @keyframes festivalBeam {
-            0% { 
-                opacity: 0;
-                transform: rotate(0deg);
-                filter: hue-rotate(0deg);
-            }
-            25% { 
-                opacity: 0.6;
-                transform: rotate(90deg);
-                filter: hue-rotate(60deg);
-            }
-            50% { 
-                opacity: 0.8;
-                transform: rotate(180deg);
-                filter: hue-rotate(120deg);
-            }
-            75% { 
-                opacity: 0.4;
-                transform: rotate(270deg);
-                filter: hue-rotate(180deg);
-            }
-            100% { 
-                opacity: 0;
-                transform: rotate(360deg);
-                filter: hue-rotate(240deg);
-            }
-        }
-
-        /* Color-Shifting Eucalyptus Flows */
-        .eucalyptus-flow {
-            position: absolute;
-            background: linear-gradient(45deg, 
-                rgba(50, 205, 50, 0.4),
-                rgba(0, 255, 255, 0.3),
-                rgba(138, 43, 226, 0.2),
-                transparent
-            );
-            border-radius: 50px;
-            animation: colorShiftFlow 45s ease-in-out infinite;
-            opacity: 0;
-            filter: blur(1px);
-        }
-
-        @keyframes colorShiftFlow {
-            0%, 100% { 
-                opacity: 0;
-                transform: rotate(0deg) scale(1);
-                filter: blur(1px) hue-rotate(0deg);
-            }
-            20% { 
-                opacity: 0.4;
-                transform: rotate(15deg) scale(1.2);
-                filter: blur(0px) hue-rotate(60deg);
-            }
-            40% { 
-                opacity: 0.6;
-                transform: rotate(-10deg) scale(0.8);
-                filter: blur(2px) hue-rotate(120deg);
-            }
-            60% { 
-                opacity: 0.5;
-                transform: rotate(20deg) scale(1.1);
-                filter: blur(0px) hue-rotate(180deg);
-            }
-            80% { 
-                opacity: 0.3;
-                transform: rotate(-5deg) scale(0.9);
-                filter: blur(1px) hue-rotate(240deg);
-            }
-        }
-
-        /* Campfire Glow Areas */
-        .campfire-glow {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, 
-                rgba(255, 69, 0, 0.3), 
-                rgba(255, 140, 0, 0.2), 
-                transparent
-            );
             border-radius: 50%;
-            animation: campfirePulse 8s ease-in-out infinite;
-            opacity: 0;
-        }
-
-        @keyframes campfirePulse {
-            0%, 100% { 
-                opacity: 0.2;
-                transform: scale(1);
-                filter: blur(10px);
-            }
-            50% { 
-                opacity: 0.6;
-                transform: scale(1.3);
-                filter: blur(5px);
-            }
-        }
-
-        /* Dramatic Flash Effects */
-        .lightning-flash {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-            animation: dramaticFlash 0.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        @keyframes dramaticFlash {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* Interactive Glow Zones */
-        .glow-zone {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(212, 200, 224, 0.2), transparent);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            border: 2px solid rgba(168, 184, 154, 0.6);
+            animation: growthRipple 2.5s ease-out forwards;
             pointer-events: none;
         }
 
-        .glow-zone.active {
-            opacity: 1;
-            animation: gentleGlow 3s ease-in-out infinite;
+        @keyframes growthRipple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+                border-color: rgba(168, 184, 154, 0.8);
+            }
+            50% {
+                border-color: rgba(230, 215, 184, 0.6);
+            }
+            100% {
+                width: 250px;
+                height: 250px;
+                opacity: 0;
+                border-color: rgba(212, 200, 224, 0);
+            }
         }
 
-        @keyframes gentleGlow {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 0.3; 
+        /* Branching mycelium growth */
+        .branch-growth {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(0deg,
+                rgba(168, 184, 154, 0.8),
+                rgba(230, 215, 184, 0.6),
+                rgba(212, 200, 224, 0.4),
+                transparent
+            );
+            animation: branchExtend 6s ease-out forwards;
+            transform-origin: bottom center;
+            opacity: 0;
+        }
+
+        @keyframes branchExtend {
+            0% {
+                opacity: 0;
+                height: 0;
+                transform: scaleY(0);
             }
-            50% { 
-                transform: scale(1.1); 
-                opacity: 0.6; 
+            30% {
+                opacity: 0.8;
+                transform: scaleY(0.5);
+            }
+            100% {
+                opacity: 0.6;
+                height: 150px;
+                transform: scaleY(1);
             }
         }
 
@@ -395,7 +270,7 @@
             border: 2px solid #A8B89A;
             border-radius: 50%;
             position: relative;
-            animation: rotate 20s linear infinite;
+            animation: mysticalRotate 25s linear infinite;
         }
 
         .sigil::before {
@@ -405,9 +280,10 @@
             left: 50%;
             width: 80px;
             height: 80px;
-            background: radial-gradient(circle, rgba(168, 184, 154, 0.2), transparent);
+            background: radial-gradient(circle, rgba(168, 184, 154, 0.3), transparent);
             border-radius: 50%;
             transform: translate(-50%, -50%);
+            animation: innerPulse 8s ease-in-out infinite;
         }
 
         .sigil::after {
@@ -420,9 +296,14 @@
             opacity: 0.8;
         }
 
-        @keyframes rotate {
+        @keyframes mysticalRotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        @keyframes innerPulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         h1 {
@@ -434,12 +315,12 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
+            animation: textShimmer 4s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
+        @keyframes textShimmer {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.8; }
         }
 
         .subtitle {
@@ -477,7 +358,7 @@
             padding: 2rem;
             margin: 2rem 0;
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .vote-title {
@@ -521,9 +402,9 @@
 
         .name-card:hover {
             border-color: #A8B89A;
-            background: rgba(230, 215, 184, 0.2);
+            background: rgba(230, 215, 184, 0.25);
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(184, 197, 166, 0.2);
+            box-shadow: 0 8px 25px rgba(184, 197, 166, 0.3);
         }
 
         .name-card:hover::before {
@@ -639,24 +520,12 @@
             }
         }
 
-        /* Cursor Trail Animation */
-        @keyframes sporalFadeOut {
-            from { 
-                opacity: 1; 
-                transform: scale(1); 
-                box-shadow: 0 0 10px rgba(230, 215, 184, 0.4);
-            }
-            to { 
-                opacity: 0; 
-                transform: scale(0.3); 
-                box-shadow: 0 0 20px rgba(230, 215, 184, 0.8);
-            }
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
+        /* ===== MOBILE OPTIMIZATIONS ===== */
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
             }
             
             h1 {
@@ -675,20 +544,39 @@
             .social-link {
                 font-size: 2rem;
             }
+
+            /* Reduce intensity on mobile */
+            .mycelium-thread {
+                height: 1px;
+                box-shadow: none;
+            }
+
+            .vote-section,
+            .disclaimer {
+                backdrop-filter: blur(4px);
+            }
+
+            .mystical-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Respect user motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .mycelium-thread,
+            .mycelium-node,
+            .spore-release,
+            .network-pulse,
+            .sigil {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Waking Life Layered Animation System -->
-    <div class="spore-layer background" id="spore-background">
-        <div class="spore-print"></div>
-    </div>
-    <div class="spore-layer" id="spore-main">
-        <div class="spore-print"></div>
-    </div>
-    <div class="spore-layer foreground" id="spore-foreground">
-        <div class="spore-print"></div>
-    </div>
+    <!-- Growing Mycelium Network Field -->
+    <div class="mycelium-field" id="mycelium-field"></div>
 
     <div class="container">
         <header class="header">
@@ -784,388 +672,299 @@
     </div>
 
     <script>
-        // ===== WAKING LIFE ANIMATION SYSTEM =====
+        // ===== GROWING MYCELIUM NETWORK SYSTEM =====
         
-        // Layer 1: Sunset Lake Ripples
-        function createEngagingWakingLifeBackground(container) {
-            console.log('Creating engaging Waking Life background for:', container.id);
-            const sporePrint = container.querySelector('.spore-print');
-            if (!sporePrint) return;
-            
-            // Create sunset-colored lake ripples
-            for (let i = 1; i <= 12; i++) {
-                const wave = document.createElement('div');
-                wave.className = 'organic-wave';
-                wave.style.top = '50%';
-                wave.style.left = '50%';
-                wave.style.transform = 'translate(-50%, -50%)';
-                wave.style.animationDelay = (i * 3) + 's';
-                wave.style.animationDuration = (40 + Math.random() * 15) + 's';
-                sporePrint.appendChild(wave);
-            }
-            
-            // Create breathing bioluminescent bamboo
-            for (let i = 0; i < 25; i++) {
-                const bamboo = document.createElement('div');
-                bamboo.className = 'bamboo-growth';
-                const height = Math.random() * 500 + 250;
-                const x = Math.random() * 1200;
-                const y = Math.random() * 900 + 150;
-                
-                bamboo.style.height = height + 'px';
-                bamboo.style.left = x + 'px';
-                bamboo.style.top = y + 'px';
-                bamboo.style.animationDelay = (i * 1.4) + 's';
-                bamboo.style.animationDuration = (35 + Math.random() * 15) + 's';
-                sporePrint.appendChild(bamboo);
-            }
-            
-            // Create rotating festival light beams
-            for (let i = 0; i < 20; i++) {
-                const ray = document.createElement('div');
-                ray.className = 'sun-ray';
-                const angle = (i * 18); // 360/20 = 18 degrees apart
-                const length = Math.random() * 400 + 250;
-                
-                ray.style.width = length + 'px';
-                ray.style.left = '50%';
-                ray.style.top = '50%';
-                ray.style.transform = `translate(0, -50%) rotate(${angle}deg)`;
-                ray.style.animationDelay = (i * 1.5) + 's';
-                ray.style.animationDuration = (30 + Math.random() * 20) + 's';
-                sporePrint.appendChild(ray);
-            }
-            
-            // Create color-shifting eucalyptus flows
-            for (let i = 0; i < 15; i++) {
-                const leaf = document.createElement('div');
-                leaf.className = 'eucalyptus-flow';
-                const width = Math.random() * 120 + 60;
-                const height = Math.random() * 30 + 15;
-                const x = Math.random() * 1000 + 100;
-                const y = Math.random() * 1000 + 100;
-                
-                leaf.style.width = width + 'px';
-                leaf.style.height = height + 'px';
-                leaf.style.left = x + 'px';
-                leaf.style.top = y + 'px';
-                leaf.style.animationDelay = (i * 3) + 's';
-                leaf.style.animationDuration = (45 + Math.random() * 20) + 's';
-                sporePrint.appendChild(leaf);
-            }
-            
-            // Create campfire glow areas
-            for (let i = 0; i < 8; i++) {
-                const glow = document.createElement('div');
-                glow.className = 'campfire-glow';
-                const x = Math.random() * 1000 + 100;
-                const y = Math.random() * 1000 + 100;
-                
-                glow.style.left = x + 'px';
-                glow.style.top = y + 'px';
-                glow.style.animationDelay = (i * 1) + 's';
-                glow.style.animationDuration = (8 + Math.random() * 4) + 's';
-                sporePrint.appendChild(glow);
-            }
-        }
+        // Performance configuration
+        const isMobile = window.innerWidth <= 768;
+        const MYCELIUM_CONFIG = {
+            maxThreads: isMobile ? 8 : 15,
+            maxNodes: isMobile ? 12 : 20,
+            maxSpores: isMobile ? 6 : 12,
+            threadInterval: isMobile ? 3000 : 2000,
+            nodeInterval: isMobile ? 4000 : 2500,
+            sporeInterval: isMobile ? 5000 : 3000,
+            mouseThrottle: 200
+        };
 
-        // Layer 2: Flowing Curved Particles
-        function createCurvedParticles(container) {
-            const sporePrint = container.querySelector('.spore-print');
-            if (!sporePrint) return;
-            
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'curved-particle';
-                
-                const startX = Math.random() * 1200;
-                const startY = Math.random() * 1200;
-                particle.style.left = startX + 'px';
-                particle.style.top = startY + 'px';
-                particle.style.animationDelay = Math.random() * 25 + 's';
-                particle.style.animationDuration = (25 + Math.random() * 15) + 's';
-                sporePrint.appendChild(particle);
-                
-                // Remove and recreate particles
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 40000);
-            }
-        }
+        let threadCount = 0;
+        let nodeCount = 0;
+        let sporeCount = 0;
+        let mouseTimeout;
 
-        // Layer 3: Dramatic Flash Effects
-        function createDramaticFlash(container) {
-            const sporePrint = container.querySelector('.spore-print');
-            if (!sporePrint) return;
+        // Create growing mycelium thread
+        function createMyceliumThread() {
+            if (threadCount >= MYCELIUM_CONFIG.maxThreads) return;
+
+            const thread = document.createElement('div');
+            thread.className = 'mycelium-thread';
             
-            const flash = document.createElement('div');
-            flash.className = 'lightning-flash';
-            sporePrint.appendChild(flash);
+            const length = Math.random() * (isMobile ? 150 : 250) + 100;
+            const angle = Math.random() * 360;
             
+            thread.style.width = length + 'px';
+            thread.style.left = Math.random() * 100 + '%';
+            thread.style.top = Math.random() * 100 + '%';
+            thread.style.transform = `rotate(${angle}deg)`;
+            thread.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('mycelium-field').appendChild(thread);
+            threadCount++;
+            
+            // Create connection nodes along the thread
             setTimeout(() => {
-                if (flash.parentNode) {
-                    flash.parentNode.removeChild(flash);
+                if (Math.random() < 0.6) {
+                    createMyceliumNode(thread);
                 }
-            }, 500);
+            }, 2000);
+            
+            // Cleanup
+            setTimeout(() => {
+                if (thread.parentNode) {
+                    thread.parentNode.removeChild(thread);
+                    threadCount--;
+                }
+            }, 15000);
         }
 
-        // Layer 4: Interactive Mouse Ripples
-        function createInteractiveRipple(x, y, container) {
-            const sporePrint = container.querySelector('.spore-print');
-            if (!sporePrint) return;
+        // Create mycelium connection node
+        function createMyceliumNode(parentThread) {
+            if (nodeCount >= MYCELIUM_CONFIG.maxNodes) return;
+
+            const node = document.createElement('div');
+            node.className = 'mycelium-node';
             
+            // Position along the parent thread
+            const parentRect = parentThread.getBoundingClientRect();
+            node.style.left = (parentRect.left + Math.random() * parentRect.width) + 'px';
+            node.style.top = (parentRect.top + Math.random() * 20 - 10) + 'px';
+            node.style.animationDelay = Math.random() * 3 + 's';
+            
+            document.getElementById('mycelium-field').appendChild(node);
+            nodeCount++;
+            
+            // Release spores from the node
+            setTimeout(() => {
+                if (Math.random() < 0.7) {
+                    createSporeRelease(node);
+                }
+            }, 1500);
+            
+            // Create branching growth
+            setTimeout(() => {
+                if (Math.random() < 0.4) {
+                    createBranchGrowth(node);
+                }
+            }, 2000);
+            
+            // Cleanup
+            setTimeout(() => {
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                    nodeCount--;
+                }
+            }, 12000);
+        }
+
+        // Create spore release from node
+        function createSporeRelease(parentNode) {
+            if (sporeCount >= MYCELIUM_CONFIG.maxSpores) return;
+
+            const spore = document.createElement('div');
+            spore.className = 'spore-release';
+            
+            const parentRect = parentNode.getBoundingClientRect();
+            spore.style.left = parentRect.left + 'px';
+            spore.style.top = parentRect.top + 'px';
+            spore.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('mycelium-field').appendChild(spore);
+            sporeCount++;
+            
+            // Cleanup
+            setTimeout(() => {
+                if (spore.parentNode) {
+                    spore.parentNode.removeChild(spore);
+                    sporeCount--;
+                }
+            }, 12000);
+        }
+
+        // Create branching growth from node
+        function createBranchGrowth(parentNode) {
+            const branch = document.createElement('div');
+            branch.className = 'branch-growth';
+            
+            const parentRect = parentNode.getBoundingClientRect();
+            branch.style.left = parentRect.left + 'px';
+            branch.style.top = parentRect.top + 'px';
+            branch.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+            branch.style.animationDelay = Math.random() * 1 + 's';
+            
+            document.getElementById('mycelium-field').appendChild(branch);
+            
+            // Cleanup
+            setTimeout(() => {
+                if (branch.parentNode) {
+                    branch.parentNode.removeChild(branch);
+                }
+            }, 8000);
+        }
+
+        // Create network energy pulse
+        function createNetworkPulse() {
+            const pulse = document.createElement('div');
+            pulse.className = 'network-pulse';
+            
+            pulse.style.left = Math.random() * 100 + '%';
+            pulse.style.top = Math.random() * 100 + '%';
+            pulse.style.animationDelay = Math.random() * 4 + 's';
+            
+            document.getElementById('mycelium-field').appendChild(pulse);
+            
+            // Cleanup
+            setTimeout(() => {
+                if (pulse.parentNode) {
+                    pulse.parentNode.removeChild(pulse);
+                }
+            }, 6000);
+        }
+
+        // Interactive growth ripple
+        function createGrowthRipple(x, y) {
             const ripple = document.createElement('div');
-            ripple.className = 'interactive-ripple';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
+            ripple.className = 'growth-ripple';
+            ripple.style.left = (x - 125) + 'px';
+            ripple.style.top = (y - 125) + 'px';
             ripple.style.transform = 'translate(-50%, -50%)';
-            sporePrint.appendChild(ripple);
             
+            document.getElementById('mycelium-field').appendChild(ripple);
+            
+            // Trigger new growth near the interaction
+            if (Math.random() < 0.5) {
+                setTimeout(createMyceliumThread, 500);
+            }
+            
+            // Cleanup
             setTimeout(() => {
                 if (ripple.parentNode) {
                     ripple.parentNode.removeChild(ripple);
                 }
-            }, 2000);
+            }, 2500);
         }
 
-        // Layer 5: Interactive Glow Zones
-        function createGlowZones() {
-            const zones = [
-                {x: 20, y: 30},
-                {x: 80, y: 25},
-                {x: 15, y: 70},
-                {x: 85, y: 75},
-                {x: 50, y: 15},
-                {x: 50, y: 85}
-            ];
-            
-            zones.forEach((zone, i) => {
-                const glowZone = document.createElement('div');
-                glowZone.className = 'glow-zone';
-                glowZone.style.left = zone.x + '%';
-                glowZone.style.top = zone.y + '%';
-                glowZone.style.transform = 'translate(-50%, -50%)';
-                document.body.appendChild(glowZone);
-                
-                // Random activation
-                setInterval(() => {
-                    if (Math.random() < 0.3) {
-                        glowZone.classList.add('active');
-                        setTimeout(() => {
-                            glowZone.classList.remove('active');
-                        }, 3000);
-                    }
-                }, 8000 + i * 2000);
-            });
-        }
-
-        // Scroll-based Layer Intensity Changes
-        function updateLayerIntensity() {
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            const layers = document.querySelectorAll('.spore-layer');
-            
-            layers.forEach((layer, index) => {
-                const intensity = 1 + (scrollPercent * 0.5); // Increase intensity as you scroll
-                layer.style.filter = `brightness(${intensity}) contrast(${1 + scrollPercent * 0.3}) saturate(${1 + scrollPercent * 0.4})`;
-            });
-        }
-
-        // ===== ANIMATION SYSTEM INITIALIZATION =====
-        function initWakingLifeAnimationSystem() {
-            console.log('Initializing Waking Life Animation System...');
-            
-            // Initialize background layers
-            const layers = ['spore-background', 'spore-main', 'spore-foreground'];
-            
-            layers.forEach((layerId, index) => {
-                const layer = document.getElementById(layerId);
-                if (layer) {
-                    setTimeout(() => {
-                        createEngagingWakingLifeBackground(layer);
-                    }, index * 2000);
-                } else {
-                    console.error(`Layer not found: ${layerId}`);
-                }
-            });
-            
-            // Start curved particles after background initialization
-            setTimeout(() => {
-                layers.forEach(layerId => {
-                    const layer = document.getElementById(layerId);
-                    if (layer) {
-                        createCurvedParticles(layer);
-                    }
-                });
-                
-                // Continuous curved particles
-                setInterval(() => {
-                    layers.forEach(layerId => {
-                        const layer = document.getElementById(layerId);
-                        if (layer) {
-                            createCurvedParticles(layer);
-                        }
-                    });
-                }, 20000);
-                
-            }, 8000);
-            
-            // Dramatic flash effects at random intervals
-            setInterval(() => {
-                if (Math.random() < 0.3) { // 30% chance every interval
-                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
-                    const layer = document.getElementById(randomLayer);
-                    if (layer) {
-                        createDramaticFlash(layer);
-                    }
-                }
-            }, 15000); // Check every 15 seconds
-            
-            // Interactive glow zones
-            setTimeout(() => {
-                createGlowZones();
-            }, 3000);
-            
-            console.log('Waking Life Animation System initialized');
-        }
-
-        // ===== INTERACTIVE EVENT HANDLERS =====
-        function initInteractiveEffects() {
-            // Mouse movement creates ripples (throttled)
-            let mouseRippleTimeout;
-            document.addEventListener('mousemove', function(e) {
-                clearTimeout(mouseRippleTimeout);
-                mouseRippleTimeout = setTimeout(() => {
-                    const layers = ['spore-main', 'spore-foreground'];
-                    const randomLayer = layers[Math.floor(Math.random() * layers.length)];
-                    const layer = document.getElementById(randomLayer);
-                    if (layer) {
-                        const rect = layer.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        createInteractiveRipple(x, y, layer);
-                    }
-                }, 150); // Throttle to avoid too many ripples
-            });
-            
-            // Click creates larger ripples across all layers
-            document.addEventListener('click', function(e) {
-                const layers = ['spore-background', 'spore-main', 'spore-foreground'];
-                layers.forEach(layerId => {
-                    const layer = document.getElementById(layerId);
-                    if (layer) {
-                        const rect = layer.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        createInteractiveRipple(x, y, layer);
-                    }
-                });
-            });
-            
-            // Touch support for mobile devices
-            document.addEventListener('touchstart', function(e) {
-                const touch = e.touches[0];
-                const layers = ['spore-main', 'spore-foreground'];
-                const randomLayer = layers[Math.floor(Math.random() * layers.length)];
-                const layer = document.getElementById(randomLayer);
-                if (layer) {
-                    const rect = layer.getBoundingClientRect();
-                    const x = touch.clientX - rect.left;
-                    const y = touch.clientY - rect.top;
-                    createInteractiveRipple(x, y, layer);
-                }
-            });
-            
-            // Scroll-based intensity changes
-            window.addEventListener('scroll', function() {
-                updateLayerIntensity();
-            });
-        }
-
-        // ===== UI COMPONENT ENHANCEMENTS =====
-        function initUIEnhancements() {
-            // Enhanced name card interactions
+        // Enhanced name card interactions
+        function initNameCardMyceliumEffects() {
             const nameCards = document.querySelectorAll('.name-card');
             nameCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                    // Trigger mycelium growth on hover
+                    if (Math.random() < 0.7) {
+                        setTimeout(createMyceliumThread, 200);
+                    }
                     
-                    // Create ripple effect on card hover
+                    // Create energy pulse at card location
                     const rect = this.getBoundingClientRect();
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
-                    const layer = document.getElementById('spore-foreground');
-                    if (layer) {
-                        const layerRect = layer.getBoundingClientRect();
-                        const x = centerX - layerRect.left;
-                        const y = centerY - layerRect.top;
-                        createInteractiveRipple(x, y, layer);
+                    
+                    if (Math.random() < 0.5) {
+                        createGrowthRipple(centerX, centerY);
                     }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
                 });
             });
         }
 
-        // ===== CURSOR TRAIL EFFECTS =====
-        function initCursorTrailEffects() {
-            // Mouse proximity interactions with glow zones
+        // ===== MYCELIUM NETWORK INITIALIZATION =====
+        function initGrowingMyceliumNetwork() {
+            console.log(`Initializing Growing Mycelium Network (Mobile: ${isMobile})`);
+            
+            // Start with initial growth
+            createMyceliumThread();
+            createNetworkPulse();
+            
+            // Continuous organic growth
+            setInterval(() => {
+                if (Math.random() < 0.8) {
+                    createMyceliumThread();
+                }
+            }, MYCELIUM_CONFIG.threadInterval);
+            
+            // Energy pulses throughout the network
+            setInterval(() => {
+                if (Math.random() < 0.6) {
+                    createNetworkPulse();
+                }
+            }, MYCELIUM_CONFIG.sporeInterval);
+            
+            // Random network activity
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    // Create spontaneous growth
+                    setTimeout(createMyceliumThread, Math.random() * 1000);
+                }
+            }, 8000);
+            
+            // Mouse/touch interaction
             document.addEventListener('mousemove', function(e) {
-                const glowZones = document.querySelectorAll('.glow-zone');
-                glowZones.forEach(zone => {
-                    const rect = zone.getBoundingClientRect();
-                    const zoneCenterX = rect.left + rect.width / 2;
-                    const zoneCenterY = rect.top + rect.height / 2;
-                    const distance = Math.sqrt(
-                        Math.pow(e.clientX - zoneCenterX, 2) + 
-                        Math.pow(e.clientY - zoneCenterY, 2)
-                    );
-                    
-                    if (distance < 100) {
-                        zone.classList.add('active');
-                    } else {
-                        zone.classList.remove('active');
+                clearTimeout(mouseTimeout);
+                mouseTimeout = setTimeout(() => {
+                    if (Math.random() < 0.06) { // 6% chance for organic feel
+                        createGrowthRipple(e.clientX, e.clientY);
                     }
-                });
-                
-                // Subtle cursor trail with spore-like particles
-                if (Math.random() < 0.05) {
-                    const trail = document.createElement('div');
-                    trail.style.position = 'fixed';
-                    trail.style.left = e.clientX + 'px';
-                    trail.style.top = e.clientY + 'px';
-                    trail.style.width = '4px';
-                    trail.style.height = '4px';
-                    trail.style.background = 'rgba(230, 215, 184, 0.6)';
-                    trail.style.borderRadius = '50%';
-                    trail.style.pointerEvents = 'none';
-                    trail.style.zIndex = '10';
-                    trail.style.animation = 'sporalFadeOut 2s ease-out forwards';
-                    document.body.appendChild(trail);
+                }, MYCELIUM_CONFIG.mouseThrottle);
+            });
+
+            // Touch support
+            document.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    createGrowthRipple(touch.clientX, touch.clientY);
                     
-                    setTimeout(() => {
-                        if (trail.parentNode) {
-                            trail.parentNode.removeChild(trail);
-                        }
-                    }, 2000);
+                    // Extra growth on touch
+                    setTimeout(createMyceliumThread, 300);
                 }
             });
+            
+            // Click creates major growth event
+            document.addEventListener('click', function(e) {
+                createGrowthRipple(e.clientX, e.clientY);
+                
+                // Trigger multiple growth events
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        createMyceliumThread();
+                        if (Math.random() < 0.5) {
+                            createNetworkPulse();
+                        }
+                    }, i * 500);
+                }
+            });
+            
+            // Name card effects
+            initNameCardMyceliumEffects();
+            
+            console.log('Growing Mycelium Network initialized');
         }
 
         // ===== MAIN INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Initializing Enhanced Waking Life Experience...');
+            console.log('Starting Living Mycelium Experience...');
             
-            // Initialize all systems
-            initWakingLifeAnimationSystem();
-            initInteractiveEffects();
-            initUIEnhancements();
-            initCursorTrailEffects();
-            
-            console.log('Enhanced Waking Life Experience fully initialized');
+            // Small delay to let page settle
+            setTimeout(() => {
+                initGrowingMyceliumNetwork();
+            }, 500);
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const newIsMobile = window.innerWidth <= 768;
+            if (newIsMobile !== isMobile) {
+                // Adjust limits on orientation change
+                MYCELIUM_CONFIG.maxThreads = newIsMobile ? 8 : 15;
+                MYCELIUM_CONFIG.maxNodes = newIsMobile ? 12 : 20;
+                MYCELIUM_CONFIG.maxSpores = newIsMobile ? 6 : 12;
+            }
         });
     </script>
 </body>
